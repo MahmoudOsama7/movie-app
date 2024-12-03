@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kapt)
@@ -7,17 +7,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.khazna_task"
+    namespace = "com.example.network"
     compileSdk = libs.versions.compileSDK.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.khazna_task"
         minSdk = libs.versions.minSDK.get().toInt()
-        targetSdk =  libs.versions.targetSDK.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -47,8 +43,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.home)
-    implementation(projects.network)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -66,4 +60,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     kapt(libs.hilt.android.compiler)
     implementation(libs.bundles.hilt)
+    implementation(libs.bundles.retrofit)
 }
