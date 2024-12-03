@@ -1,4 +1,4 @@
-package com.example.navigation
+package com.example.home.navigation.bottomBar
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
