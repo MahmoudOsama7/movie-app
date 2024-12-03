@@ -3,16 +3,14 @@ package com.example.navigation.tabsNavigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-const val TABS="tabs"
+const val TABS = "tabs"
 
 fun NavGraphBuilder.tabsFlow(
-    navigateToDetailsScreen:()->Unit
+    navigateToDetailsScreen: () -> Unit
 ) {
     composable(
-        route = TABS,
+        route = TABS
     ) {
-        TabsNavGraph(
-            navigateToDetailsScreen=navigateToDetailsScreen
-        )
+        TabsNavGraph(navigateToDetailsScreen)
     }
 }

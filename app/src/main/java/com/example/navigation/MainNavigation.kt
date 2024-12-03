@@ -8,6 +8,7 @@ import com.example.navigation.tabsNavigation.TABS
 import com.example.navigation.tabsNavigation.tabsFlow
 
 const val MAIN_ROUTE = "main_route"
+
 @Composable
 fun MainNavigation() {
     val navController = rememberNavController()
@@ -20,8 +21,11 @@ fun MainNavigation() {
             startDestination = TABS,
             route = MAIN_ROUTE
         ) {
-            tabsFlow(navigateToDetailsScreen = navController::navigateToDetailsScreen)
-            detailsNavigation()
+            tabsFlow(
+                navigateToDetailsScreen = navController::navigateToDetailsScreen
+            )
+            detailsNavigation()  // Define your detailsNavigation logic here if needed
         }
     }
 }
+

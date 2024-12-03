@@ -33,5 +33,5 @@ object NetworkingModule {
     }
 
     @Provides
-    fun providesAPIURL(): String = ""
+    fun providesAPIURL(): String = "https://www.themoviedb.org/"
 }
