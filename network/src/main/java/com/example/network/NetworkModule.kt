@@ -17,13 +17,11 @@ object NetworkingModule {
     @Provides
     fun providesRetrofit(
         gson: Gson,
-        client: OkHttpClient,
         apiURL: String
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(apiURL)
             .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(client)
             .build()
     }
 
