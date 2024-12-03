@@ -1,4 +1,4 @@
-package com.example.home.navigation.navGraph
+package com.example.navigation.tabsNavigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,9 +13,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.home.navigation.bottomBar.BottomBar
-import com.example.home.navigation.bottomBar.HOME_ROUTE
-import com.example.home.navigation.bottomBar.WISH_LIST_ROUTE
+import com.example.navigation.bottomBar.BottomBar
+import com.example.navigation.bottomBar.HOME_ROUTE
+import com.example.navigation.bottomBar.WISH_LIST_ROUTE
 
 
 @Composable

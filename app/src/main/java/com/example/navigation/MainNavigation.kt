@@ -4,7 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.example.home.navigation.tabsFlow
+import com.example.navigation.tabsNavigation.TABS
+import com.example.navigation.tabsNavigation.tabsFlow
 
 const val MAIN_ROUTE = "main_route"
 @Composable
@@ -16,7 +17,7 @@ fun MainNavigation() {
         startDestination = MAIN_ROUTE
     ) {
         navigation(
-            startDestination = com.example.home.navigation.TABS,
+            startDestination = TABS,
             route = MAIN_ROUTE
         ) {
             tabsFlow(navigateToDetailsScreen = navController::navigateToDetailsScreen)

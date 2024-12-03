@@ -1,4 +1,4 @@
-package com.example.home.navigation.bottomBar
+package com.example.navigation.bottomBar
 
 const val HOME_ROUTE = "Home"
 const val WISH_LIST_ROUTE = "Stores"
