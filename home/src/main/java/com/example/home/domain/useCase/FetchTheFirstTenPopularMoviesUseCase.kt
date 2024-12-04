@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @ViewModelScoped
-class FetchDataUseCase @Inject constructor(
+class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
     private var homeRepository: HomeRepository
 ) {
     operator fun invoke(): Flow<Resource<List<MovieUI>>> = flow {

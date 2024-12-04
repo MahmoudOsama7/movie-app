@@ -1,11 +1,11 @@
-package com.example.home.ui
+package com.example.home.ui.screens
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.home.domain.useCase.FetchDataUseCase
+import com.example.home.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
 import com.example.home.model.HomeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private var fetchDataUseCase: FetchDataUseCase
+    private var fetchTheFirstTenPopularMoviesUseCase: FetchTheFirstTenPopularMoviesUseCase
 ):ViewModel() {
 
     private val _state: MutableStateFlow<HomeUIState> =
@@ -23,8 +23,8 @@ class HomeScreenViewModel @Inject constructor(
     val state: StateFlow<HomeUIState> = _state.asStateFlow()
 
     fun getPopularMovies(){
-        viewModelScope.launch {
-            val result = fetchDataUseCase()
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = fetchTheFirstTenPopularMoviesUseCase()
             result.collect { response ->
                 when {
                     response.isLoading() -> {

@@ -61,4 +61,5 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.retrofit)
+    implementation(libs.coil)
 }

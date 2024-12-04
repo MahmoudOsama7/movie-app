@@ -3,7 +3,7 @@ package com.example.home.navigation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.home.ui.HomeScreenViewModel
+import com.example.home.ui.screens.HomeScreenViewModel
 import com.example.home.ui.screens.HomeScreen
 
 const val HOME_ROUTE = "Home"
