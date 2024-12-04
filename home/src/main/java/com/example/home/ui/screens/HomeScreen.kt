@@ -13,7 +13,7 @@ fun HomeScreen(viewModel: HomeScreenViewModel){
 
     val state = viewModel.state.collectAsState()
     LaunchedEffect(Unit) {
-        viewModel.getPopularMovies()
+        viewModel.onAppear()
     }
 
     HomeScreenContent(

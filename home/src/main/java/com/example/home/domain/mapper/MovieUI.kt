@@ -9,7 +9,7 @@ fun MovieResponse.toMovieUI():List<MovieUI>{
          overview = it.overview,
          voteCount = it.voteCount,
          voteAverage = it.voteAverage,
-         poster = it.posterPath
+         poster = "https://image.tmdb.org/t/p/w500".plus(it.posterPath)
       )
    }?: listOf()
 }

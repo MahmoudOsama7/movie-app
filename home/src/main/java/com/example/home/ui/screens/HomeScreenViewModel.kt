@@ -22,34 +22,38 @@ class HomeScreenViewModel @Inject constructor(
         MutableStateFlow(HomeUIState())
     val state: StateFlow<HomeUIState> = _state.asStateFlow()
 
-    fun getPopularMovies(){
+    fun onAppear(){
         viewModelScope.launch(Dispatchers.IO) {
-            val result = fetchTheFirstTenPopularMoviesUseCase()
-            result.collect { response ->
-                when {
-                    response.isLoading() -> {
-                        _state.update {
-                            it.copy(
-                                showLoading = true
-                            )
-                        }
+            getPopularMovies()
+            getPopularMovies()
+        }
+    }
+    suspend fun getPopularMovies(){
+        val result = fetchTheFirstTenPopularMoviesUseCase()
+        result.collect { response ->
+            when {
+                response.isLoading() -> {
+                    _state.update {
+                        it.copy(
+                            showLoading = true
+                        )
                     }
+                }
 
-                    response.isError() -> {
-                        _state.update {
-                            it.copy(
-                                showLoading = false
-                            )
-                        }
+                response.isError() -> {
+                    _state.update {
+                        it.copy(
+                            showLoading = false
+                        )
                     }
+                }
 
-                    response.isSuccess() -> {
-                        _state.update {
-                            it.copy(
-                                showLoading = false,
-                                moviesList = response.data?: listOf()
-                            )
-                        }
+                response.isSuccess() -> {
+                    _state.update {
+                        it.copy(
+                            showLoading = false,
+                            moviesList = response.data?: listOf()
+                        )
                     }
                 }
             }
