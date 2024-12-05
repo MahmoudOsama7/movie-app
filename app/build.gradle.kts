@@ -49,6 +49,7 @@ android {
 dependencies {
     implementation(projects.home)
     implementation(projects.network)
+    implementation(projects.wishList)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
