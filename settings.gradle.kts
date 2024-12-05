@@ -23,3 +23,4 @@ rootProject.name = "Khazna-Task"
 include(":app")
 include(":home")
 include(":network")
+include(":wishList")
