@@ -16,19 +16,20 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private var fetchTheFirstTenPopularMoviesUseCase: FetchTheFirstTenPopularMoviesUseCase
-):ViewModel() {
+) : ViewModel() {
 
     private val _state: MutableStateFlow<HomeUIState> =
         MutableStateFlow(HomeUIState())
     val state: StateFlow<HomeUIState> = _state.asStateFlow()
 
-    fun onAppear(){
+    fun onAppear() {
         viewModelScope.launch(Dispatchers.IO) {
             getPopularMovies()
             getPopularMovies()
         }
     }
-    suspend fun getPopularMovies(){
+
+    suspend fun getPopularMovies() {
         val result = fetchTheFirstTenPopularMoviesUseCase()
         result.collect { response ->
             when {
@@ -52,7 +53,7 @@ class HomeScreenViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                             showLoading = false,
-                            moviesList = response.data?: listOf()
+                            moviesList = response.data ?: listOf()
                         )
                     }
                 }
