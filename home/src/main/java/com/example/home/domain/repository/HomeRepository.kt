@@ -1,5 +1,6 @@
 package com.example.home.domain.repository
 
+import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
@@ -12,4 +13,6 @@ interface HomeRepository {
     suspend fun addMovieToWishList(movieEntity: MovieEntity)
     suspend fun removeMovieFromWishList(movieEntity: MovieEntity)
     suspend fun getMovieDetails(movieID:Int):Response<MovieDetailsResponse>
+    suspend fun isMovieInWishList(movieID:Int):Boolean
+    suspend fun getMovieActingCast(movieID:Int):Response<MovieCastResponse>
 }

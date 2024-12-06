@@ -10,7 +10,7 @@ const val WISH_LIST_ROUTE = "WishList"
 
 fun NavGraphBuilder.wishList(
     navigateToHomeScreen:()->Unit,
-    navigateToDetailsScreen:()->Unit
+    navigateToDetailsScreen:(Int)->Unit
 ) {
     composable(WISH_LIST_ROUTE) {
         val viewModel:WishListViewModel= hiltViewModel()

@@ -15,10 +15,13 @@ fun NavHostController.navigateToHomeScreen(){
 }
 
 fun NavGraphBuilder.homeScreen(
-    navigateToDetailsScreen:()->Unit
+    navigateToDetailsScreen:(Int)->Unit
 ) {
     composable(HOME_ROUTE) {
         val viewModel: HomeScreenViewModel = hiltViewModel()
-        HomeScreen(viewModel=viewModel)
+        HomeScreen(
+            viewModel=viewModel,
+            onMovieClicked={navigateToDetailsScreen(it.id)}
+        )
     }
 }

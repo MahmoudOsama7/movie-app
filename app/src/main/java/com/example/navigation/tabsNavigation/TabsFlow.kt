@@ -6,11 +6,11 @@ import androidx.navigation.compose.composable
 const val TABS = "tabs"
 
 fun NavGraphBuilder.tabsFlow(
-    navigateToDetailsScreen: () -> Unit
+    navigateToDetailsScreen: (Int) -> Unit
 ) {
     composable(
         route = TABS
     ) {
-        TabsNavGraph(navigateToDetailsScreen)
+        TabsNavGraph(navigateToDetailsScreen=navigateToDetailsScreen)
     }
 }

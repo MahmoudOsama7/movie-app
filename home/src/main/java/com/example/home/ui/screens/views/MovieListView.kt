@@ -11,7 +11,8 @@ import com.example.home.domain.mapper.MovieUI
 @Composable
 fun MovieListView(
     movies: List<MovieUI>,
-    onMovieClick:(MovieUI)->Unit
+    onFavouriteClicked:(MovieUI)->Unit,
+    onMovieClicked:(MovieUI)->Unit
 ) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
@@ -20,7 +21,8 @@ fun MovieListView(
         items(movies.size) { index ->
             MovieItemView(
                 movie = movies[index],
-                onMovieClick=onMovieClick
+                onFavouriteClicked=onFavouriteClicked,
+                onMovieClicked=onMovieClicked
             )
         }
     }

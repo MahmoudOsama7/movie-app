@@ -10,7 +10,10 @@ import com.example.home.domain.mapper.MovieUI
 import com.example.home.ui.screens.views.MovieListView
 
 @Composable
-fun HomeScreen(viewModel: HomeScreenViewModel){
+fun HomeScreen(
+    viewModel: HomeScreenViewModel,
+    onMovieClicked:(MovieUI)->Unit
+){
 
     val state = viewModel.state.collectAsState()
     LaunchedEffect(Unit) {
@@ -19,21 +22,26 @@ fun HomeScreen(viewModel: HomeScreenViewModel){
 
     HomeScreenContent(
         state=state.value,
-        onMovieClick=viewModel::onMovieClick
+        onFavouriteClicked=viewModel::onFavouriteClicked,
+        onMovieClicked = {
+            onMovieClicked(it)
+        }
     )
 }
 
 @Composable
 fun HomeScreenContent(
     state:HomeUIState,
-    onMovieClick:(MovieUI)->Unit
+    onMovieClicked:(MovieUI)->Unit,
+    onFavouriteClicked:(MovieUI)->Unit
 ){
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         MovieListView(
             movies = state.moviesList,
-            onMovieClick=onMovieClick
+            onFavouriteClicked=onFavouriteClicked,
+            onMovieClicked=onMovieClicked
         )
     }
 }

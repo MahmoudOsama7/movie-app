@@ -1,8 +1,6 @@
 package com.example.home.domain.useCase
 
-import com.example.home.domain.mapper.MovieDetailsUI
 import com.example.home.domain.mapper.MovieUI
-import com.example.home.domain.mapper.toMovieDetailsUI
 import com.example.home.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
 import com.example.resource.Resource
@@ -14,13 +12,15 @@ import javax.inject.Inject
 @ViewModelScoped
 class FetchMovieDetailsUseCase @Inject constructor(
     private var homeRepository: HomeRepository,
+    private var checkIfMovieIsInWishlistUseCase: CheckIfMovieIsInWishlistUseCase
 ) {
-    operator fun invoke(movieID:Int): Flow<Resource<MovieDetailsUI>> = flow {
+    operator fun invoke(movieID:Int): Flow<Resource<MovieUI>> = flow {
         try {
             emit(Resource.loading(null))
             val response = homeRepository.getMovieDetails(movieID=movieID)
             if (response.isSuccessful) {
-                val movieDetailsResponse=response.body()?.toMovieDetailsUI()
+                var movieDetailsResponse=response.body()?.toMovieUI()
+                movieDetailsResponse=movieDetailsResponse?.copy(isWishListed = checkIfMovieIsInWishlistUseCase(movieDetailsResponse))
                 emit(Resource.success(movieDetailsResponse))
             } else {
                 emit(Resource.error(response.message()))

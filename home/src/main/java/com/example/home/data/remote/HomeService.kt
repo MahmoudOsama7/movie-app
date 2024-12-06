@@ -1,5 +1,6 @@
 package com.example.home.data.remote
 
+import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieResponse
 import retrofit2.Response
@@ -21,4 +22,10 @@ interface HomeService {
         @Query("api_key") apiKey: String = API_KEY,
         @Query("language") language: String = "en-US"
     ): Response<MovieDetailsResponse>
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getMovieActingCast(
+        @Path("movie_id") movieID: Int,
+        @Query("api_key") apiKey: String = API_KEY,
+    ): Response<MovieCastResponse>
 }
