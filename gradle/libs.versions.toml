@@ -25,6 +25,8 @@ okhttp = "5.0.0-alpha.2"
 logging-interceptor = "5.0.0-alpha.2"
 #coil
 coil-ver="2.5.0"
+room-ver = "2.6.1"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -58,6 +60,9 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose-ver" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+#room
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-ver" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-ver" }
 
 
 

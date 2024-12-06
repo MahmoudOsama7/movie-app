@@ -7,10 +7,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.home"
+    namespace = "com.example.wishlist"
     compileSdk = libs.versions.compileSDK.get().toInt()
+
     defaultConfig {
         minSdk = libs.versions.minSDK.get().toInt()
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -42,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.home)
     implementation(projects.network)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -62,6 +65,4 @@ dependencies {
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.retrofit)
     implementation(libs.coil)
-    implementation(libs.androidx.room.ktx)
-    kapt(libs.room.compiler)
 }

@@ -1,5 +1,6 @@
 package com.example.navigation.tabsNavigation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,13 +13,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.home.navigation.homeScreen
+import com.example.home.navigation.navigateToHomeScreen
 import com.example.navigation.bottomBar.BottomBar
 import com.example.navigation.bottomBar.HOME_ROUTE
+import com.example.wishlist.navigation.wishList
 
 
 @Composable
 fun TabsNavGraph(
-    navigateToDetailsScreen: () -> Unit
+    navigateToDetailsScreen: () -> Unit,
 ) {
     val tabsNavController = rememberNavController()
 
@@ -41,6 +44,13 @@ fun TabsNavGraph(
             modifier = Modifier.padding(paddingValues)
         ) {
             homeScreen(navigateToDetailsScreen)
+            wishList(
+                navigateToDetailsScreen=navigateToDetailsScreen,
+                navigateToHomeScreen={
+                    Log.d("3ash3", "TabsNavGraph: ")
+                    tabsNavController.navigateToHomeScreen()
+                }
+            )
         }
     }
 }

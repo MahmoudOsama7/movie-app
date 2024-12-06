@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import com.example.home.model.HomeUIState
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
+import com.example.home.domain.mapper.MovieUI
 import com.example.home.ui.screens.views.MovieListView
 
 @Composable
@@ -17,19 +18,22 @@ fun HomeScreen(viewModel: HomeScreenViewModel){
     }
 
     HomeScreenContent(
-        state=state.value
+        state=state.value,
+        onMovieClick=viewModel::onMovieClick
     )
 }
 
 @Composable
 fun HomeScreenContent(
-    state:HomeUIState
+    state:HomeUIState,
+    onMovieClick:(MovieUI)->Unit
 ){
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         MovieListView(
-            movies = state.moviesList
+            movies = state.moviesList,
+            onMovieClick=onMovieClick
         )
     }
 }

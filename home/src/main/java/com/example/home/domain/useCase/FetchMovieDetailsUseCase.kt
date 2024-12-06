@@ -1,6 +1,8 @@
 package com.example.home.domain.useCase
 
+import com.example.home.domain.mapper.MovieDetailsUI
 import com.example.home.domain.mapper.MovieUI
+import com.example.home.domain.mapper.toMovieDetailsUI
 import com.example.home.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
 import com.example.resource.Resource
@@ -10,21 +12,16 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @ViewModelScoped
-class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
+class FetchMovieDetailsUseCase @Inject constructor(
     private var homeRepository: HomeRepository,
-    private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase
 ) {
-    operator fun invoke(): Flow<Resource<List<MovieUI>>> = flow {
+    operator fun invoke(movieID:Int): Flow<Resource<MovieDetailsUI>> = flow {
         try {
             emit(Resource.loading(null))
-            val response = homeRepository.getPopularMovies()
+            val response = homeRepository.getMovieDetails(movieID=movieID)
             if (response.isSuccessful) {
-                val movies = response.body()?.toMovieUI()?.take(10)?.map {
-                    it.copy(
-                        isWishListed = fetchMoviesFromWishListUseCase().contains(it)
-                    )
-                }
-                emit(Resource.success(movies))
+                val movieDetailsResponse=response.body()?.toMovieDetailsUI()
+                emit(Resource.success(movieDetailsResponse))
             } else {
                 emit(Resource.error(response.message()))
             }
