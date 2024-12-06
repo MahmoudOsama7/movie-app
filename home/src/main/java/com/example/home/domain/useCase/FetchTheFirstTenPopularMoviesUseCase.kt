@@ -11,15 +11,21 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
-    private var homeRepository: HomeRepository
+    private var homeRepository: HomeRepository,
+    private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase
 ) {
     operator fun invoke(): Flow<Resource<List<MovieUI>>> = flow {
         try {
             emit(Resource.loading(null))
-            val response= homeRepository.getPopularMovies()
-            if(response.isSuccessful){
-                emit(Resource.success(response.body()?.toMovieUI()?.take(10)))
-            }else{
+            val response = homeRepository.getPopularMovies()
+            if (response.isSuccessful) {
+                val movies = response.body()?.toMovieUI()?.take(10)?.map {
+                    it.copy(
+                        isWishListed = fetchMoviesFromWishListUseCase().contains(it)
+                    )
+                }
+                emit(Resource.success(movies))
+            } else {
                 emit(Resource.error(response.message()))
             }
         } catch (exception: Exception) {

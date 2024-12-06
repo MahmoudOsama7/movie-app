@@ -62,4 +62,6 @@ dependencies {
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.retrofit)
     implementation(libs.coil)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.room.compiler)
 }

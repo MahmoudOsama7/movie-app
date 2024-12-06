@@ -2,7 +2,10 @@ package com.example.home.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.home.domain.mapper.MovieUI
+import com.example.home.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
+import com.example.home.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.home.model.HomeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +18,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private var fetchTheFirstTenPopularMoviesUseCase: FetchTheFirstTenPopularMoviesUseCase
+    private var fetchTheFirstTenPopularMoviesUseCase: FetchTheFirstTenPopularMoviesUseCase,
+    private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
+    private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<HomeUIState> =
@@ -24,7 +29,6 @@ class HomeScreenViewModel @Inject constructor(
 
     fun onAppear() {
         viewModelScope.launch(Dispatchers.IO) {
-            getPopularMovies()
             getPopularMovies()
         }
     }
@@ -58,6 +62,24 @@ class HomeScreenViewModel @Inject constructor(
                     }
                 }
             }
+        }
+    }
+
+    fun onMovieClick(movieUI: MovieUI){
+        viewModelScope.launch(Dispatchers.IO) {
+            _state.update {
+                it.copy(
+                    moviesList = state.value.moviesList.map {
+                        it.copy(
+                            isWishListed = if(it.id==movieUI.id) !it.isWishListed else it.isWishListed
+                        )
+                    }
+                )
+            }
+            if(!movieUI.isWishListed)
+                addMovieToWishListUseCase(movieUI=movieUI)
+            else
+                removeMovieFromWishListUseCase(movieUI=movieUI)
         }
     }
 }
