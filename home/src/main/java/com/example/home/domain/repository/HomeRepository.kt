@@ -15,4 +15,5 @@ interface HomeRepository {
     suspend fun getMovieDetails(movieID:Int):Response<MovieDetailsResponse>
     suspend fun isMovieInWishList(movieID:Int):Boolean
     suspend fun getMovieActingCast(movieID:Int):Response<MovieCastResponse>
+    suspend fun getSimilarMovies(movieID:Int):Response<MovieResponse>
 }

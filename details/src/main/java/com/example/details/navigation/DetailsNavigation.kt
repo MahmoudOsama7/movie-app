@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.details.ui.screens.DetailsScreen
 import com.example.details.ui.screens.DetailsViewModel
+import com.example.home.domain.mapper.MovieUI
 
 const val Details_ROUTE = "details"
 const val MOVIE_ID = "movie_id"
@@ -18,13 +19,15 @@ fun NavHostController.navigateToDetailsScreen(
 }
 
 fun NavGraphBuilder.detailsScreen(
-    onBackPressed:()->Unit
+    onBackPressed:()->Unit,
+    navigateToMovieDetailsScreen:(MovieUI)->Unit
 ) {
     composable(route = Details_ROUTE + detailsArguments) {
         val viewModel:DetailsViewModel= hiltViewModel()
         DetailsScreen(
             viewModel=viewModel,
-            onBackPressed=onBackPressed
+            onBackPressed=onBackPressed,
+            onSimilarMovieClicked=navigateToMovieDetailsScreen
         )
     }
 }

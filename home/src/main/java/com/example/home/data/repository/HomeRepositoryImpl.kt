@@ -44,4 +44,8 @@ class HomeRepositoryImpl @Inject constructor(
     override suspend fun getMovieActingCast(movieID: Int): Response<MovieCastResponse> {
         return homeService.getMovieActingCast(movieID=movieID)
     }
+
+    override suspend fun getSimilarMovies(movieID: Int): Response<MovieResponse> {
+        return homeService.getSimilarMovies(movieID=movieID)
+    }
 }

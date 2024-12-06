@@ -29,7 +29,10 @@ fun MainNavigation() {
                 }
             )
             detailsScreen(
-                onBackPressed = {navController.navigateUp()}
+                onBackPressed = {navController.navigateUp()},
+                navigateToMovieDetailsScreen = {
+                    navController.navigateToDetailsScreen(it.id)
+                }
             )
         }
     }

@@ -9,6 +9,7 @@ import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchMovieActingCastUseCase
 import com.example.home.domain.useCase.FetchMovieDetailsUseCase
+import com.example.home.domain.useCase.FetchSimilarMoviesUseCase
 import com.example.home.domain.useCase.RemoveMovieFromWishListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +27,8 @@ class DetailsViewModel @Inject constructor(
     private var savedStateHandle: SavedStateHandle,
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
     private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
-    private var fetchMovieActingCastUseCase: FetchMovieActingCastUseCase
+    private var fetchMovieActingCastUseCase: FetchMovieActingCastUseCase,
+    private var fetchSimilarMoviesUseCase: FetchSimilarMoviesUseCase
 ):ViewModel() {
 
     private val _state: MutableStateFlow<DetailsUiState> =
@@ -45,9 +47,10 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
-    fun onAppear(){
+    private fun onAppear(){
         getMovieDetails()
         getMovieActingTask()
+        getSimilarMovies()
     }
 
     private fun getMovieDetails() {
@@ -119,13 +122,64 @@ class DetailsViewModel @Inject constructor(
         }
     }
 
-    fun onWishListClicked(movieUI: MovieUI){
+    private fun getSimilarMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = fetchSimilarMoviesUseCase(state.value.selectedMovieID)
+            result.collect { response ->
+                when {
+                    response.isLoading() -> {
+                        _state.update {
+                            it.copy(
+                                showLoading = true
+                            )
+                        }
+                    }
+
+                    response.isError() -> {
+                        _state.update {
+                            it.copy(
+                                showLoading = false
+                            )
+                        }
+                    }
+
+                    response.isSuccess() -> {
+                        _state.update {
+                            it.copy(
+                                showLoading = false,
+                                similarMovies = response.data?: listOf()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun onMovieDetailsWishListClicked(movieUI: MovieUI){
         viewModelScope.launch(Dispatchers.IO) {
             _state.update {
                 it.copy(
                     movieDetails = state.value.movieDetails.copy(
                         isWishListed = movieUI.isWishListed.not()
                     )
+                )
+            }
+            if(!movieUI.isWishListed)
+                addMovieToWishListUseCase(movieUI=movieUI)
+            else
+                removeMovieFromWishListUseCase(movieUI=movieUI)
+        }
+    }
+    fun onSimilarMovieWishListClicked(movieUI: MovieUI){
+        viewModelScope.launch(Dispatchers.IO) {
+            _state.update {
+                it.copy(
+                    similarMovies = state.value.similarMovies.map {
+                        it.copy(
+                            isWishListed = if(it.id==movieUI.id) !it.isWishListed else it.isWishListed
+                        )
+                    }
                 )
             }
             if(!movieUI.isWishListed)

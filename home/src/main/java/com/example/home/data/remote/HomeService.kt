@@ -9,18 +9,19 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 const val API_KEY="ecbbdd15ebc92cd950aa05bcd6872e17"
+const val LANGUAGE="en-US"
 interface HomeService {
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("api_key") apiKey: String=API_KEY,
-        @Query("language") language: String = "en-US",
+        @Query("language") language: String = LANGUAGE,
     ): Response<MovieResponse>
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetails(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String = API_KEY,
-        @Query("language") language: String = "en-US"
+        @Query("language") language: String = LANGUAGE
     ): Response<MovieDetailsResponse>
 
     @GET("movie/{movie_id}/credits")
@@ -28,4 +29,12 @@ interface HomeService {
         @Path("movie_id") movieID: Int,
         @Query("api_key") apiKey: String = API_KEY,
     ): Response<MovieCastResponse>
+
+    @GET("movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(
+        @Path("movie_id") movieID: Int,
+        @Query("api_key") apiKey: String= API_KEY,
+        @Query("language") language: String = LANGUAGE,
+        @Query("page") page: Int = 1
+    ): Response<MovieResponse>
 }
