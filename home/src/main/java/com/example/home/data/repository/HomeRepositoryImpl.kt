@@ -1,6 +1,7 @@
 package com.example.home.data.repository
 
 import com.example.home.data.local.MovieDAO
+import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
 import com.example.home.data.remote.HomeService
@@ -29,5 +30,9 @@ class HomeRepositoryImpl @Inject constructor(
 
     override suspend fun removeMovieFromWishList(movieEntity: MovieEntity) {
         movieDAO.removeMovieFromWishList(movieEntity.id?:0)
+    }
+
+    override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
+        return homeService.getMovieDetails(movieId = movieID)
     }
 }

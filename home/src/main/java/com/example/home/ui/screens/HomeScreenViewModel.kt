@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.useCase.AddMovieToWishListUseCase
+import com.example.home.domain.useCase.FetchMovieDetailsUseCase
 import com.example.home.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
 import com.example.home.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.home.model.HomeUIState
@@ -20,7 +21,8 @@ import javax.inject.Inject
 class HomeScreenViewModel @Inject constructor(
     private var fetchTheFirstTenPopularMoviesUseCase: FetchTheFirstTenPopularMoviesUseCase,
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
-    private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase
+    private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
+    private var fetchMovieDetailsUseCase: FetchMovieDetailsUseCase
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<HomeUIState> =

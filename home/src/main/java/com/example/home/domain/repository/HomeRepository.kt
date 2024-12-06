@@ -1,5 +1,6 @@
 package com.example.home.domain.repository
 
+import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
 import kotlinx.coroutines.flow.Flow
@@ -10,4 +11,5 @@ interface HomeRepository {
     suspend fun getMoviesFromWishList():Flow<List<MovieEntity>>
     suspend fun addMovieToWishList(movieEntity: MovieEntity)
     suspend fun removeMovieFromWishList(movieEntity: MovieEntity)
+    suspend fun getMovieDetails(movieID:Int):Response<MovieDetailsResponse>
 }
