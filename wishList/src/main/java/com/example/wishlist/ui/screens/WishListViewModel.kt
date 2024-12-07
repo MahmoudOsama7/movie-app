@@ -38,7 +38,7 @@ class WishListViewModel @Inject constructor(
 
     fun onMovieClick(movieUI: MovieUI){
         viewModelScope.launch(Dispatchers.IO) {
-            removeMovieFromWishListUseCase(movieUI)
+            removeMovieFromWishListUseCase(movieUI.copy(isWishListed = false))
             _state.update {
                 it.copy(
                     wishListMovies = state.value.wishListMovies.filter { it.id!=movieUI.id }

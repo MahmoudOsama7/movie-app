@@ -10,15 +10,19 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDAO {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovieToWishList(movieEntity: MovieEntity)
 
-    @Query("DELETE FROM wishList WHERE id = :id")
-    suspend fun removeMovieFromWishList(id: Int):Int
+    @Query("UPDATE wishList SET isWishListed = :isWishListed WHERE id = :id")
+    suspend fun updateWishListState(id: Int, isWishListed: Boolean): Int
 
-    @Query(value = "SELECT * FROM wishList")
+    @Query("SELECT * FROM wishList WHERE isWishListed = 1")
     fun getMoviesFromWishList(): Flow<List<MovieEntity>>
 
     @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID)")
     suspend fun isMovieInWishList(movieID: Int): Boolean
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addMovieToPopularList(movieEntity: MovieEntity)
+
+    @Query("SELECT * FROM wishList WHERE isPopular = 1")
+    fun getPopularMovies(): Flow<List<MovieEntity>>
 }

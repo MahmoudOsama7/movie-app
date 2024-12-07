@@ -1,5 +1,6 @@
 package com.example.home.ui.screens
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.domain.mapper.MovieUI
@@ -48,6 +49,7 @@ class HomeScreenViewModel @Inject constructor(
                 response.isError() -> {
                     _state.update {
                         it.copy(
+                            moviesList = response.data?: listOf(),
                             showLoading = false
                         )
                     }
@@ -77,9 +79,9 @@ class HomeScreenViewModel @Inject constructor(
                 )
             }
             if(!movieUI.isWishListed)
-                addMovieToWishListUseCase(movieUI=movieUI)
+                addMovieToWishListUseCase(movieUI=movieUI.copy(isWishListed = true))
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI)
+                removeMovieFromWishListUseCase(movieUI=movieUI.copy(isWishListed = false))
         }
     }
 }

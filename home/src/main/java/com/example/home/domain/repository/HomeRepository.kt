@@ -16,4 +16,6 @@ interface HomeRepository {
     suspend fun isMovieInWishList(movieID:Int):Boolean
     suspend fun getMovieActingCast(movieID:Int):Response<MovieCastResponse>
     suspend fun getSimilarMovies(movieID:Int):Response<MovieResponse>
+    suspend fun addMovieToPopularList(movieEntity: MovieEntity)
+    suspend fun getCachedPopularMoviesList():Flow<List<MovieEntity>>
 }

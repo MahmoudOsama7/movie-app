@@ -1,5 +1,6 @@
 package com.example.home.domain.useCase
 
+import android.util.Log
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
@@ -12,7 +13,9 @@ import javax.inject.Inject
 @ViewModelScoped
 class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
     private var homeRepository: HomeRepository,
-    private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase
+    private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase,
+    private var cachePopularMovieUseCase: CachePopularMovieUseCase,
+    private var fetchCachedPopularMoviesUseCase: FetchCachedPopularMoviesUseCase
 ) {
     operator fun invoke(): Flow<Resource<List<MovieUI>>> = flow {
         try {
@@ -20,16 +23,25 @@ class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
             val response = homeRepository.getPopularMovies()
             if (response.isSuccessful) {
                 val movies = response.body()?.toMovieUI()?.take(10)?.map {
-                    it.copy(
-                        isWishListed = fetchMoviesFromWishListUseCase().contains(it)
+                    val movie = it.copy(
+                        isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id),
+                        isPopular = true
                     )
+                    cachePopularMovieUseCase(movieUI = movie)
+                    movie
                 }
                 emit(Resource.success(movies))
             } else {
-                emit(Resource.error(response.message()))
+                emit(Resource.error(
+                    data = fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed(),
+                    message = response.message())
+                )
             }
         } catch (exception: Exception) {
-            emit(Resource.error(exception.message.orEmpty()))
+            emit(Resource.error(
+                data = fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed(),
+                message = exception.message.orEmpty())
+            )
         }
     }
 }

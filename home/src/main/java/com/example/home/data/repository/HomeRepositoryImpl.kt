@@ -1,5 +1,6 @@
 package com.example.home.data.repository
 
+import android.util.Log
 import com.example.home.data.local.MovieDAO
 import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
@@ -26,11 +27,11 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMovieToWishList(movieEntity: MovieEntity) {
-        movieDAO.addMovieToWishList(movieEntity)
+        movieDAO.updateWishListState(id=movieEntity.id?:0,isWishListed = movieEntity.isWishListed)
     }
 
     override suspend fun removeMovieFromWishList(movieEntity: MovieEntity) {
-        movieDAO.removeMovieFromWishList(movieEntity.id?:0)
+        movieDAO.updateWishListState(id=movieEntity.id?:0,isWishListed = movieEntity.isWishListed)
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
@@ -47,5 +48,13 @@ class HomeRepositoryImpl @Inject constructor(
 
     override suspend fun getSimilarMovies(movieID: Int): Response<MovieResponse> {
         return homeService.getSimilarMovies(movieID=movieID)
+    }
+
+    override suspend fun addMovieToPopularList(movieEntity: MovieEntity) {
+        return movieDAO.addMovieToPopularList(movieEntity=movieEntity)
+    }
+
+    override suspend fun getCachedPopularMoviesList(): Flow<List<MovieEntity>> {
+        return movieDAO.getPopularMovies()
     }
 }
