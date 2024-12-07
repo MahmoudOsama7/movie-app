@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.details.model.DetailsUiState
 import com.example.details.navigation.MOVIE_ID
 import com.example.home.domain.mapper.MovieUI
-import com.example.home.domain.useCase.AddMovieToWishListUseCase
+import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchMovieActingCastUseCase
 import com.example.home.domain.useCase.FetchMovieDetailsUseCase
 import com.example.home.domain.useCase.FetchSimilarMoviesUseCase

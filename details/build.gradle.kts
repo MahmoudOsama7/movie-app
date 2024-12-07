@@ -46,6 +46,7 @@ android {
 dependencies {
     implementation(projects.network)
     implementation(projects.home)
+    implementation(projects.movieData)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

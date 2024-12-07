@@ -6,9 +6,9 @@ import androidx.paging.cachedIn
 import com.example.home.data.pager.RequestLoadingStateListener
 import com.example.home.data.pager.createPager
 import com.example.home.domain.mapper.MovieUI
-import com.example.home.domain.useCase.AddMovieToWishListUseCase
+import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchMoviesUseCase
-import com.example.home.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
+import com.example.movie_data.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
 import com.example.home.domain.useCase.GetCachedPaginatedMoviesUseCase
 import com.example.home.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.home.model.HomeUIState

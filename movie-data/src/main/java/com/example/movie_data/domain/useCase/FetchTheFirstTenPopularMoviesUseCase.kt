@@ -1,8 +1,11 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.useCase.CachePopularMovieUseCase
+import com.example.home.domain.useCase.FetchCachedPopularMoviesUseCase
+import com.example.home.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow

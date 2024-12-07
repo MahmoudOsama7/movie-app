@@ -1,4 +1,4 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.mapper.toMovieEntity
