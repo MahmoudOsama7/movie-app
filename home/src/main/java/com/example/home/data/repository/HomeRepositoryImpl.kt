@@ -26,11 +26,11 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMovieToWishList(movieEntity: MovieEntity) {
-        movieDAO.addMovieToWishList(movieEntity)
+        movieDAO.upsertWishListState(movieEntity=movieEntity)
     }
 
     override suspend fun removeMovieFromWishList(movieEntity: MovieEntity) {
-        movieDAO.removeMovieFromWishList(movieEntity.id?:0)
+        movieDAO.upsertWishListState(movieEntity=movieEntity)
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
@@ -47,5 +47,13 @@ class HomeRepositoryImpl @Inject constructor(
 
     override suspend fun getSimilarMovies(movieID: Int): Response<MovieResponse> {
         return homeService.getSimilarMovies(movieID=movieID)
+    }
+
+    override suspend fun addMovieToPopularList(movieEntity: MovieEntity) {
+        return movieDAO.addMovieToPopularList(movieEntity=movieEntity)
+    }
+
+    override suspend fun getCachedPopularMoviesList(): Flow<List<MovieEntity>> {
+        return movieDAO.getPopularMovies()
     }
 }

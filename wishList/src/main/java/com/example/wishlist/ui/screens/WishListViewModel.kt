@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.home.domain.useCase.RemoveMovieFromWishListUseCase
-import com.example.home.model.HomeUIState
 import com.example.wishlist.model.WishListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +37,7 @@ class WishListViewModel @Inject constructor(
 
     fun onMovieClick(movieUI: MovieUI){
         viewModelScope.launch(Dispatchers.IO) {
-            removeMovieFromWishListUseCase(movieUI)
+            removeMovieFromWishListUseCase(movieUI.copy(isWishListed = false))
             _state.update {
                 it.copy(
                     wishListMovies = state.value.wishListMovies.filter { it.id!=movieUI.id }

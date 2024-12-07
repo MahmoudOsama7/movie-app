@@ -14,4 +14,6 @@ data class MovieEntity(
     val voteCount:Int=0,
     val poster:String="",
     val isWishListed:Boolean=false,
+    val isPopular:Boolean=false,
+    val popularity:Double
 )
