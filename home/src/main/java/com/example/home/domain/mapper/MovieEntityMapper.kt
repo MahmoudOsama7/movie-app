@@ -21,5 +21,6 @@ fun MovieEntity.toMovieUI():MovieUI=
         voteAverage=voteAverage,
         voteCount=voteCount,
         poster=poster,
-        isWishListed=isWishListed
+        isWishListed=isWishListed,
+        genres = listOf()
     )

@@ -18,4 +18,7 @@ interface MovieDAO {
 
     @Query(value = "SELECT * FROM wishList")
     fun getMoviesFromWishList(): Flow<List<MovieEntity>>
+
+    @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID)")
+    suspend fun isMovieInWishList(movieID: Int): Boolean
 }

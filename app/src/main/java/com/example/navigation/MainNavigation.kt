@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.example.details.navigation.detailsScreen
+import com.example.details.navigation.navigateToDetailsScreen
 import com.example.navigation.tabsNavigation.TABS
 import com.example.navigation.tabsNavigation.tabsFlow
 
@@ -22,9 +24,16 @@ fun MainNavigation() {
             route = MAIN_ROUTE
         ) {
             tabsFlow(
-                navigateToDetailsScreen = navController::navigateToDetailsScreen
+                navigateToDetailsScreen = {
+                    navController.navigateToDetailsScreen(it)
+                }
             )
-            detailsNavigation()  // Define your detailsNavigation logic here if needed
+            detailsScreen(
+                onBackPressed = {navController.navigateUp()},
+                navigateToMovieDetailsScreen = {
+                    navController.navigateToDetailsScreen(it.id)
+                }
+            )
         }
     }
 }

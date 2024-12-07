@@ -31,12 +31,13 @@ import com.example.home.domain.mapper.MovieUI
 @Composable
 fun MovieItemView(
     movie: MovieUI,
-    onMovieClick: (MovieUI) -> Unit,
+    onMovieClicked:(MovieUI)->Unit,
+    onFavouriteClicked: (MovieUI) -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
-            .clickable { onMovieClick(movie) }
+            .clickable { onMovieClicked(movie) }
             .width(150.dp)
             .height(250.dp)
             .padding(8.dp),
@@ -60,7 +61,7 @@ fun MovieItemView(
                         .size(24.dp)
                         .align(Alignment.TopEnd)
                         .clickable {
-                            onMovieClick(movie)
+                            onFavouriteClicked(movie)
                         }
                 )
             }

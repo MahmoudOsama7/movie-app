@@ -1,6 +1,7 @@
 package com.example.home.data.repository
 
 import com.example.home.data.local.MovieDAO
+import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
@@ -34,5 +35,17 @@ class HomeRepositoryImpl @Inject constructor(
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
         return homeService.getMovieDetails(movieId = movieID)
+    }
+
+    override suspend fun isMovieInWishList(movieID:Int): Boolean {
+        return movieDAO.isMovieInWishList(movieID=movieID)
+    }
+
+    override suspend fun getMovieActingCast(movieID: Int): Response<MovieCastResponse> {
+        return homeService.getMovieActingCast(movieID=movieID)
+    }
+
+    override suspend fun getSimilarMovies(movieID: Int): Response<MovieResponse> {
+        return homeService.getSimilarMovies(movieID=movieID)
     }
 }

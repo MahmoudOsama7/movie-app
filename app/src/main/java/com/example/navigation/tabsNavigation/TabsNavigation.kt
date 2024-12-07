@@ -1,6 +1,5 @@
 package com.example.navigation.tabsNavigation
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -21,7 +20,7 @@ import com.example.wishlist.navigation.wishList
 
 @Composable
 fun TabsNavGraph(
-    navigateToDetailsScreen: () -> Unit,
+    navigateToDetailsScreen: (Int) -> Unit,
 ) {
     val tabsNavController = rememberNavController()
 
@@ -46,10 +45,7 @@ fun TabsNavGraph(
             homeScreen(navigateToDetailsScreen)
             wishList(
                 navigateToDetailsScreen=navigateToDetailsScreen,
-                navigateToHomeScreen={
-                    Log.d("3ash3", "TabsNavGraph: ")
-                    tabsNavController.navigateToHomeScreen()
-                }
+                navigateToHomeScreen=tabsNavController::navigateToHomeScreen
             )
         }
     }
