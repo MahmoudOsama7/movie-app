@@ -21,7 +21,7 @@ class FetchSimilarMoviesUseCase @Inject constructor(
             if (response.isSuccessful) {
                 val movies = response.body()?.toMovieUI()?.take(10)?.map {
                     it.copy(
-                        isWishListed = fetchMoviesFromWishListUseCase().contains(it)
+                        isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id)
                     )
                 }
                 emit(Resource.success(movies))

@@ -1,6 +1,5 @@
 package com.example.home.data.repository
 
-import android.util.Log
 import com.example.home.data.local.MovieDAO
 import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
@@ -27,11 +26,11 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMovieToWishList(movieEntity: MovieEntity) {
-        movieDAO.updateWishListState(id=movieEntity.id?:0,isWishListed = movieEntity.isWishListed)
+        movieDAO.upsertWishListState(movieEntity=movieEntity)
     }
 
     override suspend fun removeMovieFromWishList(movieEntity: MovieEntity) {
-        movieDAO.updateWishListState(id=movieEntity.id?:0,isWishListed = movieEntity.isWishListed)
+        movieDAO.upsertWishListState(movieEntity=movieEntity)
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
