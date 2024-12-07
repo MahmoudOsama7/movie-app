@@ -1,5 +1,5 @@
 [versions]
-agp = "8.7.2"
+agp = "8.7.3"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -27,6 +27,8 @@ logging-interceptor = "5.0.0-alpha.2"
 coil-ver="2.5.0"
 room-ver = "2.6.1"
 
+#pagination
+paging-ver="3.3.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +48,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 
 #Coil
 coil={module="io.coil-kt:coil-compose",version.ref="coil-ver"}
+
+#paging3
+pagination={module="androidx.paging:paging-compose",version.ref="paging-ver"}
 
 #retrofit
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }

@@ -18,4 +18,5 @@ interface HomeRepository {
     suspend fun getSimilarMovies(movieID:Int):Response<MovieResponse>
     suspend fun addMovieToPopularList(movieEntity: MovieEntity)
     suspend fun getCachedPopularMoviesList():Flow<List<MovieEntity>>
+    suspend fun getMovies(page:Int,year:Int):Response<MovieResponse>
 }

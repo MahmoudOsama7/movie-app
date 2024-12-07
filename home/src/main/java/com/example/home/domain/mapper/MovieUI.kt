@@ -12,7 +12,8 @@ fun MovieResponse.toMovieUI():List<MovieUI>{
          voteAverage = it.voteAverage,
          poster = "https://image.tmdb.org/t/p/w500".plus(it.posterPath),
          genres = listOf(),
-         popularity = it.popularity
+         popularity = it.popularity,
+         releaseDate = it.releaseDate
       )
    }?: listOf()
 }
@@ -27,5 +28,6 @@ data class MovieUI(
    val isWishListed:Boolean=false,
    val genres:List<GenreUI> = listOf(),
    val isPopular:Boolean=false,
-   val popularity:Double=0.0
+   val popularity:Double=0.0,
+   val releaseDate:String=""
 )

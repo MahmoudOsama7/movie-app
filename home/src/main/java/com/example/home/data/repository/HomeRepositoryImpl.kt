@@ -56,4 +56,8 @@ class HomeRepositoryImpl @Inject constructor(
     override suspend fun getCachedPopularMoviesList(): Flow<List<MovieEntity>> {
         return movieDAO.getPopularMovies()
     }
+
+    override suspend fun getMovies(page:Int,year:Int): Response<MovieResponse> {
+        return homeService.getMovies(page=page,year=year)
+    }
 }
