@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.example.home.data.model.MovieEntity
+import com.example.home.data.model.PaginatedMovieEntity
 import kotlinx.coroutines.flow.Flow
 
 
@@ -20,7 +21,7 @@ interface MovieDAO {
 
     @Transaction
     suspend fun upsertWishListState(movieEntity: MovieEntity) {
-        val rowsUpdated = updateWishListState(movieEntity.id ?: return, movieEntity.isWishListed)
+        val rowsUpdated = updateWishListState(movieEntity.id ?: return, movieEntity.isWishListed?:false)
         if (rowsUpdated == 0) {
             addMovieToWishList(movieEntity)
         }
@@ -37,4 +38,11 @@ interface MovieDAO {
 
     @Query("SELECT * FROM wishList WHERE isPopular = 1")
     fun getPopularMovies(): Flow<List<MovieEntity>>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addPaginatedMovie(paginatedMovieEntity: PaginatedMovieEntity)
+
+    @Query("SELECT * FROM paginatedList WHERE id = :page")
+    fun getPaginatedMovies(page: Int): Flow<PaginatedMovieEntity>
 }

@@ -63,5 +63,6 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.coil)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.pagination)
     kapt(libs.room.compiler)
 }

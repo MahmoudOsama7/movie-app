@@ -4,6 +4,7 @@ import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
+import com.example.home.data.model.PaginatedMovieEntity
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
@@ -18,4 +19,7 @@ interface HomeRepository {
     suspend fun getSimilarMovies(movieID:Int):Response<MovieResponse>
     suspend fun addMovieToPopularList(movieEntity: MovieEntity)
     suspend fun getCachedPopularMoviesList():Flow<List<MovieEntity>>
+    suspend fun getMovies(page:Int,year:Int):Response<MovieResponse>
+    suspend fun insertPaginatedMoviesToDatabase(paginatedMovieEntity:PaginatedMovieEntity)
+    suspend fun getPaginatedMoviesFromDatabase(page:Int):Flow<PaginatedMovieEntity>
 }
