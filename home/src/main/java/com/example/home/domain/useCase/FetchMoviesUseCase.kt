@@ -1,5 +1,8 @@
 package com.example.home.domain.useCase
 
+import android.util.Log
+import com.example.home.data.model.PaginatedMovieEntity
+import com.example.home.data.model.toPaginatedMovieEntity
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
@@ -8,6 +11,7 @@ import javax.inject.Inject
 
 class FetchMoviesUseCase @Inject constructor(
     private var homeRepository: HomeRepository,
+    private var cachePaginatedMovieListUseCase: CachePaginatedMovieListUseCase
 ) {
     suspend operator  fun invoke(
         page:Int,
@@ -20,6 +24,8 @@ class FetchMoviesUseCase @Inject constructor(
             )
             if (response.isSuccessful) {
                 val movieDetailsResponse=response.body()?.toMovieUI()
+                val paginatedMovie=response.body()?.toPaginatedMovieEntity()?: PaginatedMovieEntity()
+                cachePaginatedMovieListUseCase(paginatedMovie)
                 return Resource.success(movieDetailsResponse)
             } else {
                 Resource.error<List<MovieUI>>(response.message())

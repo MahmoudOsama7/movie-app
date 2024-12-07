@@ -15,5 +15,7 @@ data class MovieEntity(
     val poster:String="",
     val isWishListed:Boolean=false,
     val isPopular:Boolean=false,
-    val popularity:Double
+    val popularity:Double,
+    val isPaginated:Boolean=false,
+    val pageNumber:Int=0
 )

@@ -5,6 +5,7 @@ import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
+import com.example.home.data.model.PaginatedMovieEntity
 import com.example.home.data.remote.HomeService
 import com.example.home.domain.repository.HomeRepository
 import dagger.hilt.android.scopes.ActivityRetainedScoped
@@ -60,4 +61,14 @@ class HomeRepositoryImpl @Inject constructor(
     override suspend fun getMovies(page:Int,year:Int): Response<MovieResponse> {
         return homeService.getMovies(page=page,year=year)
     }
+
+    override suspend fun insertPaginatedMoviesToDatabase(paginatedMovieEntity: PaginatedMovieEntity) {
+        return movieDAO.addPaginatedMovie(paginatedMovieEntity=paginatedMovieEntity)
+    }
+
+    override suspend fun getPaginatedMoviesFromDatabase(page:Int): Flow<PaginatedMovieEntity> {
+        return movieDAO.getPaginatedMovies(page)
+    }
+
+
 }

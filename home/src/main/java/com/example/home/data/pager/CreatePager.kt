@@ -9,7 +9,8 @@ import com.example.resource.Status
 
 class PagingSource<T : Any>(
     private val requestLoadingStateListener: RequestLoadingStateListener? = null,
-    private val fetchData: suspend (page: Int) -> Resource<List<T>>
+    private val fetchData: suspend (page: Int) -> Resource<List<T>>,
+    private val fetchCachedData: suspend (page: Int) -> Resource<List<T>>,
 ) : PagingSource<Int, T>() {
 
     override fun getRefreshKey(state: PagingState<Int, T>): Int? {
@@ -35,17 +36,41 @@ class PagingSource<T : Any>(
                     )
                 }
                 Status.ERROR -> {
+                    val cachedData = fetchCachedData(page)
                     requestLoadingStateListener?.onError(resource.message.orEmpty())
-                    LoadResult.Error(Exception(resource.message ?: "Unknown error"))
+                    if(cachedData.data?.isNotEmpty()==true)
+                        LoadResult.Page(
+                            data = cachedData.data?: listOf(),
+                            prevKey = if (page == 1) null else page - 1,
+                            nextKey = if (cachedData.data?.isEmpty()==true) null else page + 1
+                        )
+                    else
+                        LoadResult.Error(Throwable(resource.message.orEmpty()))
                 }
-                Status.LOADING -> {
-                    requestLoadingStateListener?.onLoading()
-                    LoadResult.Error(Exception("Data is loading"))
+                else -> {
+                    val cachedData = fetchCachedData(page)
+                    requestLoadingStateListener?.onError(resource.message.orEmpty())
+                    if(cachedData.data?.isNotEmpty()==true)
+                        LoadResult.Page(
+                            data = cachedData.data?: listOf(),
+                            prevKey = if (page == 1) null else page - 1,
+                            nextKey = if (cachedData.data?.isEmpty()==true) null else page + 1
+                        )
+                    else
+                        LoadResult.Error(Throwable(resource.message.orEmpty()))
                 }
-                Status.IDLE -> LoadResult.Error(Exception("Data is idle"))
             }
         } catch (e: Exception) {
-            LoadResult.Error(e)
+            val cachedData = fetchCachedData(page)
+            requestLoadingStateListener?.onError("can't fetch data")
+            if(cachedData.data?.isNotEmpty()==true)
+                LoadResult.Page(
+                    data = cachedData.data?: listOf(),
+                    prevKey = if (page == 1) null else page - 1,
+                    nextKey = if (cachedData.data?.isEmpty()==true) null else page + 1
+                )
+            else
+                LoadResult.Error(Throwable("cant fetch data"))
         }
     }
 }
@@ -53,11 +78,12 @@ class PagingSource<T : Any>(
 fun <T : Any> createPager(
     requestLoadingStateListener: RequestLoadingStateListener? = null,
     pageSize: Int=20,
-    fetchData: suspend (page: Int) -> Resource<List<T>>
+    fetchData: suspend (page: Int) -> Resource<List<T>>,
+    fetchCachedData: suspend (page: Int) -> Resource<List<T>>
 ): Pager<Int, T> {
     return Pager(
         config = PagingConfig(pageSize = pageSize, enablePlaceholders = false),
-        pagingSourceFactory = { PagingSource(requestLoadingStateListener, fetchData) }
+        pagingSourceFactory = { PagingSource(requestLoadingStateListener, fetchData,fetchCachedData) }
     )
 }
 
