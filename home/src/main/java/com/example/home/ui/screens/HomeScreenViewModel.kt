@@ -1,6 +1,5 @@
 package com.example.home.ui.screens
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.domain.mapper.MovieUI

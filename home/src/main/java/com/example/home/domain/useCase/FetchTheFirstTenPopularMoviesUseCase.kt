@@ -1,6 +1,5 @@
 package com.example.home.domain.useCase
 
-import android.util.Log
 import com.example.home.domain.mapper.MovieUI
 import com.example.home.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
