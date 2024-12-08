@@ -4,7 +4,7 @@ import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.movie_data.domain.mapper.toPaginatedMovieEntity
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
-import com.example.home.domain.repository.MovieRepository
+import com.example.movie_data.domain.repository.MovieRepository
 import com.example.resource.Resource
 import javax.inject.Inject
 

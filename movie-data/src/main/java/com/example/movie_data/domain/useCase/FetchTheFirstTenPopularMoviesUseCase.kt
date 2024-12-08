@@ -2,8 +2,7 @@ package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
-import com.example.home.domain.repository.MovieRepository
-import com.example.home.domain.useCase.CachePopularMovieUseCase
+import com.example.movie_data.domain.repository.MovieRepository
 import com.example.home.domain.useCase.FetchCachedPopularMoviesUseCase
 import com.example.home.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.resource.Resource
@@ -34,14 +33,22 @@ class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
                 }
                 emit(Resource.success(movies))
             } else {
+                val data =fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed().map {
+                    it.copy(
+                        isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id),
+                    )
+                }
                 emit(Resource.error(
-                    data = fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed(),
+                    data =data ,
                     message = response.message())
                 )
             }
         } catch (exception: Exception) {
+            val data =fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed().map {
+                it.copy(isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id),)
+            }
             emit(Resource.error(
-                data = fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed(),
+                data =data ,
                 message = exception.message.orEmpty())
             )
         }

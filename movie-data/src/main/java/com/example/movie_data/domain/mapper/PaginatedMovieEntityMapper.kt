@@ -6,7 +6,7 @@ import com.example.movie_data.data.model.PaginatedMovieEntity
 fun MovieResponse.toPaginatedMovieEntity(): PaginatedMovieEntity {
     return PaginatedMovieEntity(
         id = page ?: 0,
-        movieList = toMovieUI().map { it.toMovieEntity() },
+        movieList = toMovieUI().map { it.toPopularMovieEntity() },
     )
 
 }

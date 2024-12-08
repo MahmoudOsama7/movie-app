@@ -1,11 +1,10 @@
-package com.example.home.data.model
+package com.example.movie_data.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity("wishList")
-data class MovieEntity(
+data class WishListedMovieEntity(
     @PrimaryKey
     val id:Int?=null,
     val originalTitle:String="",

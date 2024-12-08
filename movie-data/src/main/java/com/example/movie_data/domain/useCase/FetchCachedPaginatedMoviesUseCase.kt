@@ -2,7 +2,7 @@ package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.domain.mapper.toMovieUiList
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.home.domain.repository.MovieRepository
+import com.example.movie_data.domain.repository.MovieRepository
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.firstOrNull

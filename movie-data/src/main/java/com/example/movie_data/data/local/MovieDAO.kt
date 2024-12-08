@@ -5,8 +5,9 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.home.data.model.MovieEntity
+import com.example.movie_data.data.model.PopularMovieEntity
 import com.example.movie_data.data.model.PaginatedMovieEntity
+import com.example.movie_data.data.model.WishListedMovieEntity
 import kotlinx.coroutines.flow.Flow
 
 
@@ -17,27 +18,27 @@ interface MovieDAO {
     suspend fun updateWishListState(id: Int, isWishListed: Boolean): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovieToWishList(movieEntity: MovieEntity)
+    suspend fun addMovieToWishList(wishListedMovieEntity: WishListedMovieEntity)
 
     @Transaction
-    suspend fun upsertWishListState(movieEntity: MovieEntity) {
-        val rowsUpdated = updateWishListState(movieEntity.id ?: return, movieEntity.isWishListed?:false)
+    suspend fun upsertWishListState(wishListedMovieEntity: WishListedMovieEntity) {
+        val rowsUpdated = updateWishListState(wishListedMovieEntity.id ?: return, wishListedMovieEntity.isWishListed)
         if (rowsUpdated == 0) {
-            addMovieToWishList(movieEntity)
+            addMovieToWishList(wishListedMovieEntity)
         }
     }
 
     @Query("SELECT * FROM wishList WHERE isWishListed = 1")
-    fun getMoviesFromWishList(): Flow<List<MovieEntity>>
+    fun getMoviesFromWishList(): Flow<List<PopularMovieEntity>>
 
     @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID AND isWishListed = 1)")
     suspend fun isMovieInWishList(movieID: Int): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovieToPopularList(movieEntity: MovieEntity)
+    suspend fun addMovieToPopularList(popularMovieEntity: PopularMovieEntity)
 
-    @Query("SELECT * FROM wishList WHERE isPopular = 1")
-    fun getPopularMovies(): Flow<List<MovieEntity>>
+    @Query("SELECT * FROM popular WHERE isPopular = 1")
+    fun getPopularMovies(): Flow<List<PopularMovieEntity>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -15,7 +15,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.details.model.DetailsUiState
-import com.example.details.ui.screens.DetailsViewModel
 import com.example.details.ui.screens.views.ActingCastLazyRow
 import com.example.details.ui.screens.views.BackButton
 import com.example.details.ui.screens.views.MovieDetailsView
@@ -51,35 +50,36 @@ fun DetailsScreenContent(
     onSimilarMovieWishListClicked:(MovieUI)->Unit,
     onSimilarMovieClicked:(MovieUI)->Unit
 ){
-    Column(
-        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
-    ) {
-        Spacer(Modifier.height(30.dp))
-        BackButton { onBackPressed() }
-        Text(
-            text = "Movie Details",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-        )
-        MovieDetailsView(
-            movie = state.movieDetails,
-            onWishlistToggle = onMovieDetailsWishListClicked,
-        )
-        Text(
-            text = "Acting Cast",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-        )
-        ActingCastLazyRow(state.movieCast)
-        Text(
-            text = "Similar Movies",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-        )
-        MovieListView(
-            movies = state.similarMovies,
-            onFavouriteClicked = onSimilarMovieWishListClicked,
-            onMovieClicked = onSimilarMovieClicked
-        )
-    }
+    if(state.movieDetails!= MovieUI())
+        Column(
+            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+        ) {
+            Spacer(Modifier.height(30.dp))
+            BackButton { onBackPressed() }
+            Text(
+                text = "Movie Details",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+            )
+            MovieDetailsView(
+                movie = state.movieDetails,
+                onWishlistToggle = onMovieDetailsWishListClicked,
+            )
+            Text(
+                text = "Acting Cast",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+            )
+            ActingCastLazyRow(state.movieCast)
+            Text(
+                text = "Similar Movies",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+            )
+            MovieListView(
+                movies = state.similarMovies,
+                onFavouriteClicked = onSimilarMovieWishListClicked,
+                onMovieClicked = onSimilarMovieClicked
+            )
+        }
 }

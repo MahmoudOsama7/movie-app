@@ -3,13 +3,14 @@ package com.example.movie_data.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.home.data.model.MovieEntity
+import com.example.movie_data.data.model.PopularMovieEntity
 import com.example.movie_data.data.model.PaginatedMovieEntity
+import com.example.movie_data.data.model.WishListedMovieEntity
 
 const val MOVIE_DB = "movies_db"
 @Database(
-    entities = [MovieEntity::class, PaginatedMovieEntity::class],
-    version = 19
+    entities = [PopularMovieEntity::class, PaginatedMovieEntity::class,WishListedMovieEntity::class],
+    version = 20
 )
 @TypeConverters(MovieEntityTypeConverter::class)
 

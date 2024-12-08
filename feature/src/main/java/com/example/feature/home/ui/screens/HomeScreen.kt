@@ -40,26 +40,29 @@ fun HomeScreenContent(
     onMovieClicked:(MovieUI)->Unit,
     onFavouriteClicked:(MovieUI)->Unit
 ){
+    val moviesFlow = state.moviesList.collectAsLazyPagingItems()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(
-            text = "Popular Movies",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-        )
+        if(state.popularMoviesList.isNotEmpty())
+            Text(
+                text = "Popular Movies",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+            )
         MovieListView(
             movies = state.popularMoviesList,
             onFavouriteClicked = onFavouriteClicked,
             onMovieClicked = onMovieClicked
         )
+        if(moviesFlow.itemCount!=0)
         Text(
             text = "All Movies",
             style = MaterialTheme.typography.headlineSmall,
             modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
         )
         VerticalMovieListView(
-            movies = state.moviesList.collectAsLazyPagingItems(),
+            movies = moviesFlow,
             onMovieClicked = onMovieClicked
         )
     }

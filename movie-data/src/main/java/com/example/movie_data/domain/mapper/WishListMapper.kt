@@ -1,9 +1,9 @@
 package com.example.movie_data.domain.mapper
 
-import com.example.movie_data.data.model.PopularMovieEntity
+import com.example.movie_data.data.model.WishListedMovieEntity
 
-fun MovieUI.toPopularMovieEntity(): PopularMovieEntity =
-    PopularMovieEntity(
+fun MovieUI.toWishListEntity(): WishListedMovieEntity =
+    WishListedMovieEntity(
         id=id,
         originalTitle=originalTitle,
         overview=overview,
@@ -15,7 +15,7 @@ fun MovieUI.toPopularMovieEntity(): PopularMovieEntity =
         popularity=popularity
     )
 
-fun PopularMovieEntity.toMovieUI(): MovieUI =
+fun WishListedMovieEntity.toMovieUI(): MovieUI =
     MovieUI(
         id=id?:0,
         originalTitle=originalTitle,

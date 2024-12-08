@@ -1,13 +1,14 @@
-package com.example.home.data.repository
+package com.example.movie_data.data.repository
 
 import com.example.movie_data.data.local.MovieDAO
 import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
-import com.example.home.data.model.MovieEntity
+import com.example.movie_data.data.model.PopularMovieEntity
 import com.example.home.data.model.MovieResponse
 import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.movie_data.data.remote.MovieService
-import com.example.home.domain.repository.MovieRepository
+import com.example.movie_data.domain.repository.MovieRepository
+import com.example.movie_data.data.model.WishListedMovieEntity
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
@@ -17,21 +18,21 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(
     private val movieService: MovieService,
     private val movieDAO: MovieDAO
-) :MovieRepository {
+) : MovieRepository {
     override suspend fun getPopularMovies(): Response<MovieResponse> {
         return movieService.getPopularMovies()
     }
 
-    override suspend fun getMoviesFromWishList(): Flow<List<MovieEntity>> {
+    override suspend fun getMoviesFromWishList(): Flow<List<PopularMovieEntity>> {
         return movieDAO.getMoviesFromWishList()
     }
 
-    override suspend fun addMovieToWishList(movieEntity: MovieEntity) {
-        movieDAO.upsertWishListState(movieEntity=movieEntity)
+    override suspend fun addMovieToWishList(wishListedMovieEntity: WishListedMovieEntity) {
+        movieDAO.upsertWishListState(wishListedMovieEntity=wishListedMovieEntity)
     }
 
-    override suspend fun removeMovieFromWishList(movieEntity: MovieEntity) {
-        movieDAO.upsertWishListState(movieEntity=movieEntity)
+    override suspend fun removeMovieFromWishList(wishListedMovieEntity: WishListedMovieEntity) {
+        movieDAO.upsertWishListState(wishListedMovieEntity=wishListedMovieEntity)
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
@@ -50,11 +51,11 @@ class MovieRepositoryImpl @Inject constructor(
         return movieService.getSimilarMovies(movieID=movieID)
     }
 
-    override suspend fun addMovieToPopularList(movieEntity: MovieEntity) {
-        return movieDAO.addMovieToPopularList(movieEntity=movieEntity)
+    override suspend fun addMovieToPopularList(popularMovieEntity: PopularMovieEntity) {
+        return movieDAO.addMovieToPopularList(popularMovieEntity=popularMovieEntity)
     }
 
-    override suspend fun getCachedPopularMoviesList(): Flow<List<MovieEntity>> {
+    override suspend fun getCachedPopularMoviesList(): Flow<List<PopularMovieEntity>> {
         return movieDAO.getPopularMovies()
     }
 
