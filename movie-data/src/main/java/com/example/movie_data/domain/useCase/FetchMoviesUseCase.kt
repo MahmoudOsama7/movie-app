@@ -1,10 +1,9 @@
 package com.example.home.domain.useCase
 
-import android.util.Log
-import com.example.home.data.model.PaginatedMovieEntity
-import com.example.home.data.model.toPaginatedMovieEntity
-import com.example.home.domain.mapper.MovieUI
-import com.example.home.domain.mapper.toMovieUI
+import com.example.movie_data.data.model.PaginatedMovieEntity
+import com.example.movie_data.domain.mapper.toPaginatedMovieEntity
+import com.example.movie_data.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.toMovieUI
 import com.example.home.domain.repository.HomeRepository
 import com.example.resource.Resource
 import javax.inject.Inject

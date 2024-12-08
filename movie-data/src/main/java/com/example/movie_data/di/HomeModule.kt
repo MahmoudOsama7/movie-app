@@ -3,7 +3,7 @@ package com.example.home.di
 import android.content.Context
 import androidx.room.Room
 import com.example.home.data.local.MOVIE_DB
-import com.example.home.data.local.MovieDAO
+import com.example.movie_data.data.local.MovieDAO
 import com.example.home.data.local.MovieDB
 import com.example.home.data.remote.HomeService
 import com.example.home.data.repository.HomeRepositoryImpl

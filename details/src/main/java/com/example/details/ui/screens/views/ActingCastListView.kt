@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.home.domain.mapper.CastUI
+import com.example.movie_data.domain.model.CastUI
 
 @Composable
 fun ActingCastLazyRow(castList: List<CastUI>) {

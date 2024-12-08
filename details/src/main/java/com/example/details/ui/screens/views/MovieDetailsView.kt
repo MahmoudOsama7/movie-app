@@ -1,15 +1,10 @@
 package com.example.details.ui.screens.views
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -23,8 +18,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.home.domain.mapper.GenreUI
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.MovieUI
 
 @Composable
 fun MovieDetailsView(
@@ -81,47 +75,6 @@ fun MovieDetailsView(
                 color = Color.White
             )
         }
-    }
-}
-
-@Composable
-fun GenreSection(genres: List<GenreUI>) {
-    if (genres.isNotEmpty()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-        ) {
-            Text(
-                text = "Genres",
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-
-            LazyRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(genres) { genre ->
-                    GenreChip(genre)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun GenreChip(genre: GenreUI) {
-    Box(
-        modifier = Modifier
-            .background(Color.LightGray, shape = RoundedCornerShape(16.dp))
-            .padding(horizontal = 12.dp, vertical = 8.dp)
-    ) {
-        Text(
-            text = genre.name,
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color.Black
-        )
     }
 }
 

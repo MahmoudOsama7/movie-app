@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.MovieUI
 
 @Composable
 fun WishListView(wishListedMovies: List<MovieUI>, onMovieClick: (MovieUI) -> Unit) {

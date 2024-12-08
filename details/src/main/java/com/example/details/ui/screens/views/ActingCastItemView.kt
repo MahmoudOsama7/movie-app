@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.home.domain.mapper.CastUI
+import com.example.movie_data.domain.model.CastUI
 
 @Composable
 fun ActingCastItemView(cast: CastUI) {

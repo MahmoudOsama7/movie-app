@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.home.data.pager.RequestLoadingStateListener
 import com.example.home.data.pager.createPager
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchMoviesUseCase
 import com.example.movie_data.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
-import com.example.home.domain.useCase.GetCachedPaginatedMoviesUseCase
-import com.example.home.domain.useCase.RemoveMovieFromWishListUseCase
+import com.example.movie_data.domain.useCase.GetCachedPaginatedMoviesUseCase
+import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.home.model.HomeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

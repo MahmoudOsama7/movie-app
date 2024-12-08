@@ -1,11 +1,11 @@
 package com.example.home.data.repository
 
-import com.example.home.data.local.MovieDAO
+import com.example.movie_data.data.local.MovieDAO
 import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
-import com.example.home.data.model.PaginatedMovieEntity
+import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.home.data.remote.HomeService
 import com.example.home.domain.repository.HomeRepository
 import dagger.hilt.android.scopes.ActivityRetainedScoped

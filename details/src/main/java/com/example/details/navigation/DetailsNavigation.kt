@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.details.ui.screens.DetailsScreen
 import com.example.details.ui.screens.DetailsViewModel
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.MovieUI
 
 const val Details_ROUTE = "details"
 const val MOVIE_ID = "movie_id"

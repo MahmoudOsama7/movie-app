@@ -1,17 +1,10 @@
-package com.example.home.domain.mapper
+package com.example.movie_data.domain.mapper
 
 import com.example.home.data.model.Cast
+import com.example.movie_data.domain.model.CastUI
 
 
-data class CastUI(
-    val id:Int=0,
-    val name:String="",
-    val profilePath:String="",
-    val originalName:String=""
-)
-
-
-fun Cast.toCastUI():CastUI=
+fun Cast.toCastUI(): CastUI =
     CastUI(
         id=id?:0,
         name=name.orEmpty(),

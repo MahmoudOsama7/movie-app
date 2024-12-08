@@ -1,4 +1,4 @@
-package com.example.home.domain.mapper
+package com.example.movie_data.domain.mapper
 
 import com.example.home.data.model.MovieEntity
 
@@ -15,7 +15,7 @@ fun MovieUI.toMovieEntity():MovieEntity=
         popularity=popularity
     )
 
-fun MovieEntity.toMovieUI():MovieUI=
+fun MovieEntity.toMovieUI(): MovieUI =
     MovieUI(
         id=id?:0,
         originalTitle=originalTitle,

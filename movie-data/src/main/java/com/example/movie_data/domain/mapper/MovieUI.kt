@@ -1,6 +1,7 @@
-package com.example.home.domain.mapper
+package com.example.movie_data.domain.mapper
 
 import com.example.home.data.model.MovieResponse
+import com.example.movie_data.domain.model.GenreUI
 
 fun MovieResponse.toMovieUI():List<MovieUI>{
    return results?.map {

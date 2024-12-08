@@ -7,7 +7,7 @@ import com.example.home.model.HomeUIState
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.MovieUI
 import com.example.home.ui.screens.views.MovieListView
 import com.example.home.ui.screens.views.VerticalMovieListView
 

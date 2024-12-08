@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.MovieUI
 
 @Composable
 fun VerticalMovieListView(
@@ -18,7 +18,7 @@ fun VerticalMovieListView(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(movies.itemCount) { index ->
-            VerticalMovieListItemView(movie = movies[index]?:MovieUI())
+            VerticalMovieListItemView(movie = movies[index]?: MovieUI())
         }
     }
 }

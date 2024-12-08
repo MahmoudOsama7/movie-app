@@ -1,6 +1,5 @@
-package com.example.home.domain.mapper
+package com.example.movie_data.domain.mapper
 
-import com.example.home.data.model.Genre
 import com.example.home.data.model.MovieDetailsResponse
 
 fun MovieDetailsResponse.toMovieUI() =
@@ -15,13 +14,3 @@ fun MovieDetailsResponse.toMovieUI() =
         genres = genres.map { it.toGenreUI() }
     )
 
-
-data class GenreUI(
-    val id: Int = 0,
-    val name: String = ""
-)
-
-fun Genre.toGenreUI(): GenreUI = GenreUI(
-    id = id,
-    name = name
-)

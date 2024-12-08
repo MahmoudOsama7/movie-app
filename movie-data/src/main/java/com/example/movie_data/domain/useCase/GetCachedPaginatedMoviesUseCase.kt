@@ -1,7 +1,7 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
-import com.example.home.data.model.toMovieUiList
-import com.example.home.domain.mapper.MovieUI
+import com.example.movie_data.domain.mapper.toMovieUiList
+import com.example.movie_data.domain.mapper.MovieUI
 import com.example.home.domain.repository.HomeRepository
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped

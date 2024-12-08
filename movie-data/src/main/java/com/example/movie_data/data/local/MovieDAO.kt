@@ -1,4 +1,4 @@
-package com.example.home.data.local
+package com.example.movie_data.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.example.home.data.model.MovieEntity
-import com.example.home.data.model.PaginatedMovieEntity
+import com.example.movie_data.data.model.PaginatedMovieEntity
 import kotlinx.coroutines.flow.Flow
 
 

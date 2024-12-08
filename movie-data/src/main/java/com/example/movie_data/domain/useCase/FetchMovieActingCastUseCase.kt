@@ -1,8 +1,8 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
-import com.example.home.domain.mapper.MovieCastUI
-import com.example.home.domain.mapper.toMovieCastUI
+import com.example.movie_data.domain.mapper.toMovieCastUI
 import com.example.home.domain.repository.HomeRepository
+import com.example.movie_data.domain.model.MovieCastUI
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
