@@ -38,8 +38,8 @@ interface MovieService {
     suspend fun getMovies(
         @Query("api_key") apiKey: String= BuildConfig.API_KEY,
         @Query("primary_release_year") year: Int,
-        @Query("sort_by") sortBy: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("sort_by") sortBy: String
     ): Response<MovieResponse>
 
 }
