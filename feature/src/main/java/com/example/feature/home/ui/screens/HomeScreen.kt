@@ -17,8 +17,8 @@ import com.example.feature.home.ui.screens.views.VerticalMovieListView
 @Composable
 fun HomeScreen(
     viewModel: HomeScreenViewModel,
-    onMovieClicked:(MovieUI)->Unit
-){
+    onMovieClicked: (MovieUI) -> Unit
+) {
 
     val state = viewModel.state.collectAsState()
     LaunchedEffect(Unit) {
@@ -26,8 +26,8 @@ fun HomeScreen(
     }
 
     HomeScreenContent(
-        state=state.value,
-        onFavouriteClicked=viewModel::onFavouriteClicked,
+        state = state.value,
+        onFavouriteClicked = viewModel::onFavouriteClicked,
         onMovieClicked = {
             onMovieClicked(it)
         }
@@ -37,14 +37,22 @@ fun HomeScreen(
 @Composable
 fun HomeScreenContent(
     state: HomeUIState,
-    onMovieClicked:(MovieUI)->Unit,
-    onFavouriteClicked:(MovieUI)->Unit
-){
+    onMovieClicked: (MovieUI) -> Unit,
+    onFavouriteClicked: (MovieUI) -> Unit
+) {
     val moviesFlow = state.moviesList.collectAsLazyPagingItems()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        if(state.popularMoviesList.isNotEmpty())
+
+        Text(
+            text = "Watchlist",
+            style = MaterialTheme.typography.headlineLarge,
+            modifier = Modifier
+                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+        )
+
+        if (state.popularMoviesList.isNotEmpty())
             Text(
                 text = "Popular Movies",
                 style = MaterialTheme.typography.headlineSmall,
@@ -55,7 +63,7 @@ fun HomeScreenContent(
             onFavouriteClicked = onFavouriteClicked,
             onMovieClicked = onMovieClicked
         )
-        if(moviesFlow.itemCount!=0)
+        if (moviesFlow.itemCount != 0)
             Text(
                 text = "All Movies",
                 style = MaterialTheme.typography.headlineSmall,
