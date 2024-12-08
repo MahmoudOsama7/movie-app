@@ -28,11 +28,11 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addMovieToWishList(wishListedMovieEntity: WishListedMovieEntity) {
-        movieDAO.upsertWishListState(wishListedMovieEntity=wishListedMovieEntity)
+        movieDAO.addMovieToWishList(wishListedMovieEntity)
     }
 
     override suspend fun removeMovieFromWishList(wishListedMovieEntity: WishListedMovieEntity) {
-        movieDAO.upsertWishListState(wishListedMovieEntity=wishListedMovieEntity)
+        movieDAO.removeMovieFromWishListById(wishListedMovieEntity.id?:0)
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {

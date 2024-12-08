@@ -14,21 +14,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MovieDAO {
 
-    @Query("UPDATE wishList SET isWishListed = :isWishListed WHERE id = :id")
-    suspend fun updateWishListState(id: Int, isWishListed: Boolean): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMovieToWishList(wishListedMovieEntity: WishListedMovieEntity)
 
-    @Transaction
-    suspend fun upsertWishListState(wishListedMovieEntity: WishListedMovieEntity) {
-        val rowsUpdated = updateWishListState(wishListedMovieEntity.id ?: return, wishListedMovieEntity.isWishListed)
-        if (rowsUpdated == 0) {
-            addMovieToWishList(wishListedMovieEntity)
-        }
-    }
+    @Query("DELETE FROM wishList WHERE id = :id")
+    suspend fun removeMovieFromWishListById(id: Int)
 
-    @Query("SELECT * FROM wishList WHERE isWishListed = 1")
+    @Query("SELECT * FROM wishList")
     fun getMoviesFromWishList(): Flow<List<PopularMovieEntity>>
 
     @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID AND isWishListed = 1)")
@@ -39,7 +32,6 @@ interface MovieDAO {
 
     @Query("SELECT * FROM popular WHERE isPopular = 1")
     fun getPopularMovies(): Flow<List<PopularMovieEntity>>
-
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addPaginatedMovie(paginatedMovieEntity: PaginatedMovieEntity)

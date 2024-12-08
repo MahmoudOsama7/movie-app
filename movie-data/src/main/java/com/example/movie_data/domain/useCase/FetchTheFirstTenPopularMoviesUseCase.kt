@@ -4,7 +4,6 @@ import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
 import com.example.movie_data.domain.repository.MovieRepository
 import com.example.home.domain.useCase.FetchCachedPopularMoviesUseCase
-import com.example.home.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow

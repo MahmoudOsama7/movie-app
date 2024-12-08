@@ -106,9 +106,9 @@ class HomeScreenViewModel @Inject constructor(
                 )
             }
             if(!movieUI.isWishListed)
-                addMovieToWishListUseCase(movieUI=movieUI.copy(isWishListed = true))
+                addMovieToWishListUseCase(movieUI=movieUI)
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI.copy(isWishListed = false))
+                removeMovieFromWishListUseCase(movieUI=movieUI)
         }
     }
 

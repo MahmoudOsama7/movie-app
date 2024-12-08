@@ -3,7 +3,7 @@ package com.example.wishlist.ui.screens
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.home.domain.useCase.FetchMoviesFromWishListUseCase
+import com.example.movie_data.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.wishlist.model.WishListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -166,9 +166,9 @@ class DetailsViewModel @Inject constructor(
                 )
             }
             if(!movieUI.isWishListed)
-                addMovieToWishListUseCase(movieUI=movieUI.copy(isWishListed = true))
+                addMovieToWishListUseCase(movieUI=movieUI)
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI.copy(isWishListed = false))
+                removeMovieFromWishListUseCase(movieUI=movieUI)
         }
     }
     fun onSimilarMovieWishListClicked(movieUI: MovieUI){
@@ -183,9 +183,9 @@ class DetailsViewModel @Inject constructor(
                 )
             }
             if(!movieUI.isWishListed)
-                addMovieToWishListUseCase(movieUI=movieUI.copy(isWishListed = true))
+                addMovieToWishListUseCase(movieUI=movieUI)
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI.copy(isWishListed = false))
+                removeMovieFromWishListUseCase(movieUI=movieUI)
         }
     }
 }
