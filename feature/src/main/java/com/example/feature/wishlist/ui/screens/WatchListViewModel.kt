@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.base.dispatchers.IoDispatcher
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.movie_data.domain.useCase.FetchMoviesFromWishListUseCase
-import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
-import com.example.feature.wishlist.model.WishListUiState
+import com.example.movie_data.domain.useCase.FetchMoviesFromWatchListUseCase
+import com.example.movie_data.domain.useCase.RemoveMovieFromWatchListUseCase
+import com.example.feature.wishlist.model.WatchList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,21 +17,21 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WishListViewModel @Inject constructor(
-    private val fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase,
-    private val removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
+class WatchListViewModel @Inject constructor(
+    private val fetchMoviesFromWatchListUseCase: FetchMoviesFromWatchListUseCase,
+    private val removeMovieFromWatchListUseCase: RemoveMovieFromWatchListUseCase,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ):ViewModel() {
 
-    private val _state: MutableStateFlow<WishListUiState> =
-        MutableStateFlow(WishListUiState())
-    val state: StateFlow<WishListUiState> = _state.asStateFlow()
+    private val _state: MutableStateFlow<WatchList> =
+        MutableStateFlow(WatchList())
+    val state: StateFlow<WatchList> = _state.asStateFlow()
 
     fun onAppear(){
         viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
-                    wishListMovies = fetchMoviesFromWishListUseCase()
+                    watchListMovies = fetchMoviesFromWatchListUseCase()
                 )
             }
         }
@@ -39,10 +39,10 @@ class WishListViewModel @Inject constructor(
 
     fun onMovieClick(movieUI: MovieUI){
         viewModelScope.launch(dispatcher) {
-            removeMovieFromWishListUseCase(movieUI.copy(isWishListed = false))
+            removeMovieFromWatchListUseCase(movieUI.copy(isWishListed = false))
             _state.update {
                 it.copy(
-                    wishListMovies = state.value.wishListMovies.filter { it.id!=movieUI.id }
+                    watchListMovies = state.value.watchListMovies.filter { it.id!=movieUI.id }
                 )
             }
         }

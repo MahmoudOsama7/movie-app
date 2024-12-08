@@ -16,7 +16,7 @@ import coil.compose.AsyncImage
 import com.example.movie_data.domain.mapper.MovieUI
 
 @Composable
-fun WishListItemView(movieUI: MovieUI, onMovieClick: (MovieUI) -> Unit) {
+fun WatchListItemView(movieUI: MovieUI, onMovieClick: (MovieUI) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -76,7 +76,7 @@ fun WishListItemView(movieUI: MovieUI, onMovieClick: (MovieUI) -> Unit) {
                 ) {
                     Text(
                         modifier = Modifier.clickable { onMovieClick(movieUI) },
-                        text = "Remove from Wishlist",
+                        text = "Remove from WatchList",
                         color = Color.White,
                         fontSize = 12.sp
                     )

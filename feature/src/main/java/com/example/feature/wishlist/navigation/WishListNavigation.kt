@@ -3,18 +3,18 @@ package com.example.feature.wishlist.navigation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.feature.wishlist.ui.screens.WishListScreen
-import com.example.feature.wishlist.ui.screens.WishListViewModel
+import com.example.feature.wishlist.ui.screens.WatchListScreen
+import com.example.feature.wishlist.ui.screens.WatchListViewModel
 
-const val WISH_LIST_ROUTE = "WishList"
+const val WATCH_LIST_ROUTE = "WatchList"
 
-fun NavGraphBuilder.wishList(
+fun NavGraphBuilder.watchList(
     navigateToHomeScreen:()->Unit,
     navigateToDetailsScreen:(Int)->Unit
 ) {
-    composable(WISH_LIST_ROUTE) {
-        val viewModel: WishListViewModel = hiltViewModel()
-        WishListScreen(
+    composable(WATCH_LIST_ROUTE) {
+        val viewModel: WatchListViewModel = hiltViewModel()
+        WatchListScreen(
             viewModel=viewModel,
             onStartAddingClicked = navigateToHomeScreen
         )

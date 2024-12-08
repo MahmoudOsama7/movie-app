@@ -12,7 +12,7 @@ import javax.inject.Inject
 @ViewModelScoped
 class FetchSimilarMoviesUseCase @Inject constructor(
     private var movieRepository: MovieRepository,
-    private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase
+    private var fetchMoviesFromWatchListUseCase: FetchMoviesFromWatchListUseCase
 ) {
     operator fun invoke(movieID:Int): Flow<Resource<List<MovieUI>>> = flow {
         try {
@@ -21,7 +21,7 @@ class FetchSimilarMoviesUseCase @Inject constructor(
             if (response.isSuccessful) {
                 val movies = response.body()?.toMovieUI()?.take(10)?.map {
                     it.copy(
-                        isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id)
+                        isWishListed = fetchMoviesFromWatchListUseCase().map { it.id }.contains(it.id)
                     )
                 }
                 emit(Resource.success(movies))

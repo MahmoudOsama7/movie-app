@@ -11,7 +11,7 @@ import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.movie_data.domain.useCase.FetchMovieActingCastUseCase
 import com.example.movie_data.domain.useCase.FetchMovieDetailsUseCase
 import com.example.movie_data.domain.useCase.FetchSimilarMoviesUseCase
-import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
+import com.example.movie_data.domain.useCase.RemoveMovieFromWatchListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +27,7 @@ class DetailsViewModel @Inject constructor(
     private var fetchMovieDetailsUseCase: FetchMovieDetailsUseCase,
     private var savedStateHandle: SavedStateHandle,
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
-    private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
+    private var removeMovieFromWatchListUseCase: RemoveMovieFromWatchListUseCase,
     private var fetchMovieActingCastUseCase: FetchMovieActingCastUseCase,
     private var fetchSimilarMoviesUseCase: FetchSimilarMoviesUseCase,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
@@ -171,7 +171,7 @@ class DetailsViewModel @Inject constructor(
             if(!movieUI.isWishListed)
                 addMovieToWishListUseCase(movieUI=movieUI)
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI)
+                removeMovieFromWatchListUseCase(movieUI=movieUI)
         }
     }
     fun onSimilarMovieWishListClicked(movieUI: MovieUI){
@@ -188,7 +188,7 @@ class DetailsViewModel @Inject constructor(
             if(!movieUI.isWishListed)
                 addMovieToWishListUseCase(movieUI=movieUI)
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI)
+                removeMovieFromWatchListUseCase(movieUI=movieUI)
         }
     }
 }

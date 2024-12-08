@@ -15,7 +15,7 @@ import com.example.feature.home.navigation.homeScreen
 import com.example.feature.home.navigation.navigateToHomeScreen
 import com.example.navigation.bottomBar.BottomBar
 import com.example.navigation.bottomBar.HOME_ROUTE
-import com.example.feature.wishlist.navigation.wishList
+import com.example.feature.wishlist.navigation.watchList
 
 
 @Composable
@@ -43,7 +43,7 @@ fun TabsNavGraph(
             modifier = Modifier.padding(paddingValues)
         ) {
             homeScreen(navigateToDetailsScreen)
-            wishList(
+            watchList(
                 navigateToDetailsScreen=navigateToDetailsScreen,
                 navigateToHomeScreen=tabsNavController::navigateToHomeScreen
             )

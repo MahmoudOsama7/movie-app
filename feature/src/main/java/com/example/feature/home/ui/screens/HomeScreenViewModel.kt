@@ -11,7 +11,7 @@ import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.movie_data.domain.useCase.FetchMoviesUseCase
 import com.example.movie_data.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
 import com.example.movie_data.domain.useCase.FetchCachedPaginatedMoviesUseCase
-import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
+import com.example.movie_data.domain.useCase.RemoveMovieFromWatchListUseCase
 import com.example.feature.home.model.HomeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,7 +26,7 @@ import javax.inject.Inject
 class HomeScreenViewModel @Inject constructor(
     private var fetchTheFirstTenPopularMoviesUseCase: FetchTheFirstTenPopularMoviesUseCase,
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
-    private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
+    private var removeMovieFromWatchListUseCase: RemoveMovieFromWatchListUseCase,
     private var fetchMoviesUseCase: FetchMoviesUseCase,
     private var fetchCachedPaginatedMoviesUseCase: FetchCachedPaginatedMoviesUseCase,
     @IoDispatcher private val dispatcher: CoroutineDispatcher
@@ -110,7 +110,7 @@ class HomeScreenViewModel @Inject constructor(
             if(!movieUI.isWishListed)
                 addMovieToWishListUseCase(movieUI=movieUI)
             else
-                removeMovieFromWishListUseCase(movieUI=movieUI)
+                removeMovieFromWatchListUseCase(movieUI=movieUI)
         }
     }
 

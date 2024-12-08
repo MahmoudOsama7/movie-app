@@ -20,7 +20,7 @@ fun BottomBar(
 ) {
     val items = listOf(
         BottomBarTabs.Home,
-        BottomBarTabs.WishList
+        BottomBarTabs.WatchList
     )
 
     val backStackEntry by navHostController.currentBackStackEntryAsState()
