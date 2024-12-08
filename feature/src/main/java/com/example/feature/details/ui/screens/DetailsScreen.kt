@@ -14,9 +14,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.details.model.DetailsUiState
-import com.example.details.ui.screens.views.ActingCastLazyRow
-import com.example.details.ui.screens.views.BackButton
+import com.example.feature.details.model.DetailsUiState
+import com.example.feature.details.ui.screens.views.ActingCastLazyRow
+import com.example.designsystem.components.BackButton
 import com.example.details.ui.screens.views.MovieDetailsView
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.home.ui.screens.views.MovieListView
@@ -44,7 +44,7 @@ fun DetailsScreen(
 
 @Composable
 fun DetailsScreenContent(
-    state:DetailsUiState,
+    state: DetailsUiState,
     onBackPressed: () -> Unit,
     onMovieDetailsWishListClicked:(MovieUI)->Unit,
     onSimilarMovieWishListClicked:(MovieUI)->Unit,

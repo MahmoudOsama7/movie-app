@@ -4,8 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.base.dispatchers.IoDispatcher
-import com.example.details.model.DetailsUiState
-import com.example.details.navigation.MOVIE_ID
+import com.example.feature.details.model.DetailsUiState
+import com.example.feature.details.navigation.MOVIE_ID
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.movie_data.domain.useCase.FetchMovieActingCastUseCase

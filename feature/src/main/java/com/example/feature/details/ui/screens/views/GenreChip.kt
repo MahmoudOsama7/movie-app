@@ -1,4 +1,4 @@
-package com.example.details.ui.screens.views
+package com.example.feature.details.ui.screens.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

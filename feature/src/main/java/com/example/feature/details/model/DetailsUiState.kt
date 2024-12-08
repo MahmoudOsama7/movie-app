@@ -1,4 +1,4 @@
-package com.example.details.model
+package com.example.feature.details.model
 
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.model.CastUI

@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import com.example.details.navigation.detailsScreen
-import com.example.details.navigation.navigateToDetailsScreen
+import com.example.feature.details.navigation.detailsScreen
+import com.example.feature.details.navigation.navigateToDetailsScreen
 import com.example.navigation.tabsNavigation.TABS
 import com.example.navigation.tabsNavigation.tabsFlow
 
