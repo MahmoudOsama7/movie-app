@@ -59,8 +59,12 @@ class MovieRepositoryImpl @Inject constructor(
         return movieDAO.getPopularMovies()
     }
 
-    override suspend fun getMovies(page:Int,year:Int): Response<MovieResponse> {
-        return movieService.getMovies(page=page,year=year)
+    override suspend fun getMovies(page:Int,year:Int,sortBy:String): Response<MovieResponse> {
+        return movieService.getMovies(
+            page=page,
+            year=year,
+            sortBy = sortBy
+        )
     }
 
     override suspend fun insertPaginatedMoviesToDatabase(paginatedMovieEntity: PaginatedMovieEntity) {

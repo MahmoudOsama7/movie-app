@@ -20,7 +20,7 @@ interface MovieRepository {
     suspend fun getSimilarMovies(movieID:Int):Response<MovieResponse>
     suspend fun addMovieToPopularList(popularMovieEntity: PopularMovieEntity)
     suspend fun getCachedPopularMoviesList():Flow<List<PopularMovieEntity>>
-    suspend fun getMovies(page:Int,year:Int):Response<MovieResponse>
+    suspend fun getMovies(page:Int,year:Int,sortBy:String):Response<MovieResponse>
     suspend fun insertPaginatedMoviesToDatabase(paginatedMovieEntity: PaginatedMovieEntity)
     suspend fun getPaginatedMoviesFromDatabase(page:Int):Flow<PaginatedMovieEntity>
 }

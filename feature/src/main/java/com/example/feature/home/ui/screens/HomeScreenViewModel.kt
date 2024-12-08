@@ -52,7 +52,8 @@ class HomeScreenViewModel @Inject constructor(
                     fetchData = { page ->
                         fetchMoviesUseCase(
                             page=page,
-                            year = 2024
+                            year = 2024,
+                            sortBy = "release_date.desc"
                         )
                     },
                     fetchCachedData = {page->

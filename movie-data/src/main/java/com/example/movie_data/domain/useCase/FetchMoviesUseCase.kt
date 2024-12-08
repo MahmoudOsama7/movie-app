@@ -14,12 +14,14 @@ class FetchMoviesUseCase @Inject constructor(
 ) {
     suspend operator  fun invoke(
         page:Int,
-        year:Int
+        year:Int,
+        sortBy:String
     ): Resource<List<MovieUI>> {
         try {
             val response = movieRepository.getMovies(
                 page=page,
-                year=year
+                year=year,
+                sortBy=sortBy
             )
             if (response.isSuccessful) {
                 val movieDetailsResponse=response.body()?.toMovieUI()
