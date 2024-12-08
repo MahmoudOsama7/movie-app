@@ -1,4 +1,4 @@
-package com.example.home.data.local
+package com.example.movie_data.data.local
 
 import androidx.room.TypeConverter
 import com.example.home.data.model.MovieEntity

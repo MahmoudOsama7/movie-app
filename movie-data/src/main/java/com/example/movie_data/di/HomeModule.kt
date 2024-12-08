@@ -1,13 +1,13 @@
-package com.example.home.di
+package com.example.movie_data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.home.data.local.MOVIE_DB
+import com.example.movie_data.data.local.MOVIE_DB
 import com.example.movie_data.data.local.MovieDAO
-import com.example.home.data.local.MovieDB
-import com.example.home.data.remote.HomeService
-import com.example.home.data.repository.HomeRepositoryImpl
-import com.example.home.domain.repository.HomeRepository
+import com.example.movie_data.data.local.MovieDB
+import com.example.home.data.remote.MovieService
+import com.example.home.data.repository.MovieRepositoryImpl
+import com.example.home.domain.repository.MovieRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,11 +21,11 @@ import retrofit2.Retrofit
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-object HomeProvidesModule {
+object MovieProvidesModule {
     @Provides
     @ActivityRetainedScoped
-    fun HomeService(retrofit: Retrofit): HomeService =
-        retrofit.create(HomeService::class.java)
+    fun provideMovieService(retrofit: Retrofit): MovieService =
+        retrofit.create(MovieService::class.java)
 
 
     @Provides
@@ -50,12 +50,12 @@ object HomeProvidesModule {
 
     @Module
     @InstallIn(ViewModelComponent::class)
-    interface HomeBindModule {
+    interface movieBindModule {
         @Binds
         @ViewModelScoped
-        fun bindHomeRepository(
-            additionalInfoRepository: HomeRepositoryImpl
-        ): HomeRepository
+        fun bindMovieRepository(
+            movieRepository: MovieRepositoryImpl
+        ): MovieRepository
     }
 
 

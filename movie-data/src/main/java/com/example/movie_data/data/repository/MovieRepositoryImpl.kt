@@ -6,20 +6,20 @@ import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
 import com.example.movie_data.data.model.PaginatedMovieEntity
-import com.example.home.data.remote.HomeService
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.data.remote.MovieService
+import com.example.home.domain.repository.MovieRepository
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-class HomeRepositoryImpl @Inject constructor(
-    private val homeService: HomeService,
+class MovieRepositoryImpl @Inject constructor(
+    private val movieService: MovieService,
     private val movieDAO: MovieDAO
-) :HomeRepository {
+) :MovieRepository {
     override suspend fun getPopularMovies(): Response<MovieResponse> {
-        return homeService.getPopularMovies()
+        return movieService.getPopularMovies()
     }
 
     override suspend fun getMoviesFromWishList(): Flow<List<MovieEntity>> {
@@ -35,7 +35,7 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
-        return homeService.getMovieDetails(movieId = movieID)
+        return movieService.getMovieDetails(movieId = movieID)
     }
 
     override suspend fun isMovieInWishList(movieID:Int): Boolean {
@@ -43,11 +43,11 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovieActingCast(movieID: Int): Response<MovieCastResponse> {
-        return homeService.getMovieActingCast(movieID=movieID)
+        return movieService.getMovieActingCast(movieID=movieID)
     }
 
     override suspend fun getSimilarMovies(movieID: Int): Response<MovieResponse> {
-        return homeService.getSimilarMovies(movieID=movieID)
+        return movieService.getSimilarMovies(movieID=movieID)
     }
 
     override suspend fun addMovieToPopularList(movieEntity: MovieEntity) {
@@ -59,7 +59,7 @@ class HomeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMovies(page:Int,year:Int): Response<MovieResponse> {
-        return homeService.getMovies(page=page,year=year)
+        return movieService.getMovies(page=page,year=year)
     }
 
     override suspend fun insertPaginatedMoviesToDatabase(paginatedMovieEntity: PaginatedMovieEntity) {

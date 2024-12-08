@@ -1,7 +1,7 @@
 package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.domain.mapper.toMovieCastUI
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.repository.MovieRepository
 import com.example.movie_data.domain.model.MovieCastUI
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -11,12 +11,12 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class FetchMovieActingCastUseCase @Inject constructor(
-    private var homeRepository: HomeRepository,
+    private var movieRepository: MovieRepository,
 ) {
     operator fun invoke(movieID:Int): Flow<Resource<MovieCastUI>> = flow {
         try {
             emit(Resource.loading(null))
-            val response = homeRepository.getMovieActingCast(movieID=movieID)
+            val response = movieRepository.getMovieActingCast(movieID=movieID)
             if (response.isSuccessful) {
                 emit(Resource.success(response.body()?.toMovieCastUI()))
             } else {

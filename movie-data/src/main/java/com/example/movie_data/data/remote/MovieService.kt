@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 const val API_KEY="ecbbdd15ebc92cd950aa05bcd6872e17"
 const val LANGUAGE="en-US"
-interface HomeService {
+interface MovieService {
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("api_key") apiKey: String=API_KEY,

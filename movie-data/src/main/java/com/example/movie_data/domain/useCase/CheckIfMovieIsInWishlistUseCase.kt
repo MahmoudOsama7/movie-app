@@ -1,13 +1,13 @@
 package com.example.home.domain.useCase
 
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.repository.MovieRepository
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
 class CheckIfMovieIsInWishlistUseCase @Inject constructor(
-    private var homeRepository: HomeRepository
+    private var movieRepository: MovieRepository
 ) {
-    suspend operator fun invoke(movieUI: MovieUI) = homeRepository.isMovieInWishList(movieID = movieUI.id)
+    suspend operator fun invoke(movieUI: MovieUI) = movieRepository.isMovieInWishList(movieID = movieUI.id)
 }

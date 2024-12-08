@@ -2,7 +2,7 @@ package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.repository.MovieRepository
 import com.example.home.domain.useCase.CachePopularMovieUseCase
 import com.example.home.domain.useCase.FetchCachedPopularMoviesUseCase
 import com.example.home.domain.useCase.FetchMoviesFromWishListUseCase
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
-    private var homeRepository: HomeRepository,
+    private var movieRepository: MovieRepository,
     private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase,
     private var cachePopularMovieUseCase: CachePopularMovieUseCase,
     private var fetchCachedPopularMoviesUseCase: FetchCachedPopularMoviesUseCase
@@ -22,7 +22,7 @@ class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<MovieUI>>> = flow {
         try {
             emit(Resource.loading(null))
-            val response = homeRepository.getPopularMovies()
+            val response = movieRepository.getPopularMovies()
             if (response.isSuccessful) {
                 val movies = response.body()?.toMovieUI()?.take(10)?.map {
                     val movie = it.copy(

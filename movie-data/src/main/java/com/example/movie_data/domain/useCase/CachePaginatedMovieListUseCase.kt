@@ -1,13 +1,13 @@
 package com.example.home.domain.useCase
 
 import com.example.movie_data.data.model.PaginatedMovieEntity
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.repository.MovieRepository
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
 class CachePaginatedMovieListUseCase @Inject constructor(
-    private var homeRepository: HomeRepository
+    private var movieRepository: MovieRepository
 ) {
-    suspend operator fun invoke(paginatedMovieEntity: PaginatedMovieEntity) = homeRepository.insertPaginatedMoviesToDatabase(paginatedMovieEntity = paginatedMovieEntity)
+    suspend operator fun invoke(paginatedMovieEntity: PaginatedMovieEntity) = movieRepository.insertPaginatedMoviesToDatabase(paginatedMovieEntity = paginatedMovieEntity)
 }

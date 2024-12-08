@@ -2,7 +2,7 @@ package com.example.home.domain.useCase
 
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.repository.MovieRepository
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
@@ -11,13 +11,13 @@ import javax.inject.Inject
 
 @ViewModelScoped
 class FetchSimilarMoviesUseCase @Inject constructor(
-    private var homeRepository: HomeRepository,
+    private var movieRepository: MovieRepository,
     private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase
 ) {
     operator fun invoke(movieID:Int): Flow<Resource<List<MovieUI>>> = flow {
         try {
             emit(Resource.loading(null))
-            val response = homeRepository.getSimilarMovies(movieID=movieID)
+            val response = movieRepository.getSimilarMovies(movieID=movieID)
             if (response.isSuccessful) {
                 val movies = response.body()?.toMovieUI()?.take(10)?.map {
                     it.copy(

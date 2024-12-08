@@ -4,12 +4,12 @@ import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.movie_data.domain.mapper.toPaginatedMovieEntity
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
-import com.example.home.domain.repository.HomeRepository
+import com.example.home.domain.repository.MovieRepository
 import com.example.resource.Resource
 import javax.inject.Inject
 
 class FetchMoviesUseCase @Inject constructor(
-    private var homeRepository: HomeRepository,
+    private var movieRepository: MovieRepository,
     private var cachePaginatedMovieListUseCase: CachePaginatedMovieListUseCase
 ) {
     suspend operator  fun invoke(
@@ -17,7 +17,7 @@ class FetchMoviesUseCase @Inject constructor(
         year:Int
     ): Resource<List<MovieUI>> {
         try {
-            val response = homeRepository.getMovies(
+            val response = movieRepository.getMovies(
                 page=page,
                 year=year
             )
