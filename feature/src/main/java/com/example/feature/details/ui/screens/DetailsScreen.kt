@@ -65,21 +65,26 @@ fun DetailsScreenContent(
                 movie = state.movieDetails,
                 onWishlistToggle = onMovieDetailsWishListClicked,
             )
-            Text(
-                text = "Acting Cast",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-            )
-            ActingCastLazyRow(state.movieCast)
-            Text(
-                text = "Similar Movies",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-            )
-            MovieListView(
-                movies = state.similarMovies,
-                onFavouriteClicked = onSimilarMovieWishListClicked,
-                onMovieClicked = onSimilarMovieClicked
-            )
+            if(state.movieCast.isNotEmpty()){
+                Text(
+                    text = "Acting Cast",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+                )
+                ActingCastLazyRow(state.movieCast)
+            }
+            if(state.similarMovies.isNotEmpty()){
+                Text(
+                    text = "Similar Movies",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+                )
+                MovieListView(
+                    movies = state.similarMovies,
+                    onFavouriteClicked = onSimilarMovieWishListClicked,
+                    onMovieClicked = onSimilarMovieClicked
+                )
+            }
+
         }
 }
