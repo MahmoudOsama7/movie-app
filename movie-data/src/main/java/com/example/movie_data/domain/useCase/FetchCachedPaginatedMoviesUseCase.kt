@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 @ViewModelScoped
-class GetCachedPaginatedMoviesUseCase @Inject constructor(
+class FetchCachedPaginatedMoviesUseCase @Inject constructor(
     private var movieRepository: MovieRepository
 ) {
     suspend operator fun invoke(page:Int):Resource<List<MovieUI>>{

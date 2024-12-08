@@ -9,7 +9,7 @@ import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchMoviesUseCase
 import com.example.movie_data.domain.useCase.FetchTheFirstTenPopularMoviesUseCase
-import com.example.movie_data.domain.useCase.GetCachedPaginatedMoviesUseCase
+import com.example.movie_data.domain.useCase.FetchCachedPaginatedMoviesUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.home.model.HomeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,7 +27,7 @@ class HomeScreenViewModel @Inject constructor(
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
     private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
     private var fetchMoviesUseCase: FetchMoviesUseCase,
-    private var getCachedPaginatedMoviesUseCase: GetCachedPaginatedMoviesUseCase
+    private var fetchCachedPaginatedMoviesUseCase: FetchCachedPaginatedMoviesUseCase
 ) : ViewModel(),RequestLoadingStateListener {
 
     private val _state: MutableStateFlow<HomeUIState> =
@@ -54,7 +54,7 @@ class HomeScreenViewModel @Inject constructor(
                         )
                     },
                     fetchCachedData = {page->
-                        getCachedPaginatedMoviesUseCase(page=page)
+                        fetchCachedPaginatedMoviesUseCase(page=page)
                     }
                 ).flow.cachedIn(viewModelScope)
             )
