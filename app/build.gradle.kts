@@ -50,6 +50,7 @@ dependencies {
     implementation(projects.network)
     implementation(projects.designSystem)
     implementation(projects.movieData)
+    implementation(projects.base)
     implementation(projects.feature)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -3,6 +3,7 @@ package com.example.home.domain.useCase
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
 import com.example.movie_data.domain.repository.MovieRepository
+import com.example.movie_data.domain.useCase.CheckIfMovieIsInWishlistUseCase
 import com.example.resource.Resource
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +21,9 @@ class FetchMovieDetailsUseCase @Inject constructor(
             val response = movieRepository.getMovieDetails(movieID=movieID)
             if (response.isSuccessful) {
                 var movieDetailsResponse=response.body()?.toMovieUI()
-                movieDetailsResponse=movieDetailsResponse?.copy(isWishListed = checkIfMovieIsInWishlistUseCase(movieDetailsResponse))
+                movieDetailsResponse=movieDetailsResponse?.copy(
+                    isWishListed = checkIfMovieIsInWishlistUseCase(movieDetailsResponse)
+                )
                 emit(Resource.success(movieDetailsResponse))
             } else {
                 emit(Resource.error(response.message()))

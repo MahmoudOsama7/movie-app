@@ -1,4 +1,4 @@
-package com.example.home.data.pager
+package com.example.base.pager
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

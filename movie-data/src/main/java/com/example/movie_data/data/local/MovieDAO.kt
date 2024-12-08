@@ -22,9 +22,9 @@ interface MovieDAO {
     suspend fun removeMovieFromWishListById(id: Int)
 
     @Query("SELECT * FROM wishList")
-    fun getMoviesFromWishList(): Flow<List<PopularMovieEntity>>
+    fun getMoviesFromWishList(): Flow<List<WishListedMovieEntity>>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID AND isWishListed = 1)")
+    @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID)")
     suspend fun isMovieInWishList(movieID: Int): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

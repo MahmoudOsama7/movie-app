@@ -56,11 +56,11 @@ fun HomeScreenContent(
             onMovieClicked = onMovieClicked
         )
         if(moviesFlow.itemCount!=0)
-        Text(
-            text = "All Movies",
-            style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-        )
+            Text(
+                text = "All Movies",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+            )
         VerticalMovieListView(
             movies = moviesFlow,
             onMovieClicked = onMovieClicked

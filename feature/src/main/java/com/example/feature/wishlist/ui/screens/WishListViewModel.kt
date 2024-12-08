@@ -2,11 +2,13 @@ package com.example.wishlist.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.base.dispatchers.IoDispatcher
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.wishlist.model.WishListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class WishListViewModel @Inject constructor(
     private val fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase,
-    private val removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase
+    private val removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
 ):ViewModel() {
 
     private val _state: MutableStateFlow<WishListUiState> =
@@ -26,7 +29,7 @@ class WishListViewModel @Inject constructor(
     val state: StateFlow<WishListUiState> = _state.asStateFlow()
 
     fun onAppear(){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     wishListMovies = fetchMoviesFromWishListUseCase()
@@ -36,7 +39,7 @@ class WishListViewModel @Inject constructor(
     }
 
     fun onMovieClick(movieUI: MovieUI){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             removeMovieFromWishListUseCase(movieUI.copy(isWishListed = false))
             _state.update {
                 it.copy(

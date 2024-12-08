@@ -47,6 +47,7 @@ android {
         implementation(projects.designSystem)
         implementation(projects.movieData)
         implementation(projects.network)
+        implementation(projects.base)
         implementation(libs.androidx.core.ktx)
         implementation(libs.androidx.lifecycle.runtime.ktx)
         implementation(libs.androidx.activity.compose)

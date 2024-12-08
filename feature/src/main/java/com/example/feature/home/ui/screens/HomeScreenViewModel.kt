@@ -3,8 +3,9 @@ package com.example.feature.home.ui.screens
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.example.home.data.pager.RequestLoadingStateListener
-import com.example.home.data.pager.createPager
+import com.example.base.dispatchers.IoDispatcher
+import com.example.base.pager.RequestLoadingStateListener
+import com.example.base.pager.createPager
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.home.domain.useCase.FetchMoviesUseCase
@@ -13,6 +14,7 @@ import com.example.movie_data.domain.useCase.FetchCachedPaginatedMoviesUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import com.example.home.model.HomeUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,8 +29,9 @@ class HomeScreenViewModel @Inject constructor(
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
     private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
     private var fetchMoviesUseCase: FetchMoviesUseCase,
-    private var fetchCachedPaginatedMoviesUseCase: FetchCachedPaginatedMoviesUseCase
-) : ViewModel(),RequestLoadingStateListener {
+    private var fetchCachedPaginatedMoviesUseCase: FetchCachedPaginatedMoviesUseCase,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
+) : ViewModel(), RequestLoadingStateListener {
 
     private val _state: MutableStateFlow<HomeUIState> =
         MutableStateFlow(HomeUIState())
@@ -36,7 +39,7 @@ class HomeScreenViewModel @Inject constructor(
 
 
     fun onAppear() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             getPopularMovies()
             getMovies()
         }
@@ -95,7 +98,7 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     fun onFavouriteClicked(movieUI: MovieUI){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     popularMoviesList = state.value.popularMoviesList.map {

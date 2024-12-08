@@ -1,4 +1,4 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.repository.MovieRepository
@@ -9,5 +9,7 @@ import javax.inject.Inject
 class CheckIfMovieIsInWishlistUseCase @Inject constructor(
     private var movieRepository: MovieRepository
 ) {
-    suspend operator fun invoke(movieUI: MovieUI) = movieRepository.isMovieInWishList(movieID = movieUI.id)
+    suspend operator fun invoke(movieUI: MovieUI):Boolean{
+        return movieRepository.isMovieInWishList(movieID = movieUI.id)
+    }
 }

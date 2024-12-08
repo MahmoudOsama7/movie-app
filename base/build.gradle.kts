@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.movie_data"
+    namespace = "com.example.base"
     compileSdk = libs.versions.compileSDK.get().toInt()
 
     defaultConfig {
@@ -41,11 +41,7 @@ android {
 
 dependencies {
     implementation(projects.network)
+    implementation(libs.pagination)
     kapt(libs.hilt.android.compiler)
-    implementation(projects.base)
     implementation(libs.bundles.hilt)
-    implementation(libs.bundles.retrofit)
-    implementation(libs.coil)
-    implementation(libs.androidx.room.ktx)
-    kapt(libs.room.compiler)
 }
