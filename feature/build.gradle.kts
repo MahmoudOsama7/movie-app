@@ -44,7 +44,7 @@ android {
     }
 
     dependencies {
-
+        implementation(projects.designSystem)
         implementation(projects.movieData)
         implementation(projects.network)
         implementation(libs.androidx.core.ktx)
