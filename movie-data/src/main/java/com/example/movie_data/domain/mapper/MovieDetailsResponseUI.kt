@@ -1,6 +1,7 @@
 package com.example.movie_data.domain.mapper
 
 import com.example.movie_data.data.model.MovieDetailsResponse
+import com.example.network.BuildConfig
 
 fun MovieDetailsResponse.toMovieUI() =
     MovieUI(
@@ -9,7 +10,7 @@ fun MovieDetailsResponse.toMovieUI() =
         overview = overview,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        poster = "https://image.tmdb.org/t/p/w500".plus(posterPath),
+        poster = BuildConfig.POSTER_URL.plus(posterPath),
         isWishListed = false,
         genres = genres.map { it.toGenreUI() }
     )

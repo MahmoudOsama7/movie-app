@@ -40,7 +40,20 @@ android {
     }
     buildFeatures {
         compose = true
-
+        buildConfig = true
+    }
+    flavorDimensions += "environment"
+    productFlavors {
+        create("Production") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "${properties["BASE_URL"]}")
+            buildConfigField("String", "POSTER_URL", "${properties["POSTER_URL"]}")
+        }
+        create("Staging") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "${properties["BASE_URL"]}")
+            buildConfigField("String", "POSTER_URL", "${properties["POSTER_URL"]}")
+        }
     }
 
     dependencies {
