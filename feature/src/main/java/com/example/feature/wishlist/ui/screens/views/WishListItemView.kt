@@ -70,7 +70,7 @@ fun WishListItemView(movieUI: MovieUI, onMovieClick: (MovieUI) -> Unit) {
                 Button(
                     onClick = { onMovieClick(movieUI) },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (movieUI.isWishListed) Color.Red else Color.Gray
+                        containerColor = Color.Red
                     ),
                     modifier = Modifier.align(Alignment.End)
                 ) {
