@@ -1,15 +1,18 @@
-package com.example.home.ui.screens
+package com.example.feature.home.ui.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import com.example.home.model.HomeUIState
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.home.ui.screens.views.MovieListView
-import com.example.home.ui.screens.views.VerticalMovieListView
+import com.example.feature.home.ui.screens.views.VerticalMovieListView
 
 @Composable
 fun HomeScreen(
@@ -40,13 +43,24 @@ fun HomeScreenContent(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+        Text(
+            text = "Popular Movies",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+        )
         MovieListView(
             movies = state.popularMoviesList,
-            onFavouriteClicked=onFavouriteClicked,
-            onMovieClicked=onMovieClicked
+            onFavouriteClicked = onFavouriteClicked,
+            onMovieClicked = onMovieClicked
+        )
+        Text(
+            text = "All Movies",
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
         )
         VerticalMovieListView(
-            movies=state.moviesList.collectAsLazyPagingItems()
+            movies = state.moviesList.collectAsLazyPagingItems(),
+            onMovieClicked = onMovieClicked
         )
     }
 }

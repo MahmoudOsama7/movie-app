@@ -1,4 +1,4 @@
-package com.example.wishlist.ui.screens.views
+package com.example.feature.wishlist.ui.screens.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

@@ -4,7 +4,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.details.ui.screens.DetailsScreen
+import com.example.feature.details.ui.screens.DetailsScreen
 import com.example.details.ui.screens.DetailsViewModel
 import com.example.movie_data.domain.mapper.MovieUI
 

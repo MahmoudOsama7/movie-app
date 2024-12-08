@@ -3,7 +3,7 @@ package com.example.wishlist.navigation
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.wishlist.ui.screens.WishListScreen
+import com.example.feature.wishlist.ui.screens.WishListScreen
 import com.example.wishlist.ui.screens.WishListViewModel
 
 const val WISH_LIST_ROUTE = "WishList"
