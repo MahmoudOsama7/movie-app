@@ -4,41 +4,45 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.feature.wishlist.model.WishListUiState
+import com.example.feature.wishlist.model.WatchList
 import com.example.feature.wishlist.ui.screens.views.EmptyStateView
-import com.example.feature.wishlist.ui.screens.views.WishListView
+import com.example.feature.wishlist.ui.screens.views.WatchListView
 
 @Composable
-fun WishListScreen(
+fun WatchListScreen(
     onStartAddingClicked: () -> Unit,
-    viewModel: WishListViewModel
+    viewModel: WatchListViewModel,
+    onMovieClicked:(MovieUI)->Unit
 ) {
     val state = viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.onAppear()
     }
-    WishListScreenContent(
+    WatchListScreenContent(
         state = state.value,
         onStartAddingClicked = onStartAddingClicked,
-        onMovieClick = viewModel::onMovieClick
+        onMovieClicked=onMovieClicked,
+        onRemoveFromWatchListClicked = viewModel::onRemoveFromWatchListClicked
     )
 }
 
 
 @Composable
-fun WishListScreenContent(
-    state: WishListUiState,
+fun WatchListScreenContent(
+    state: WatchList,
     onStartAddingClicked: () -> Unit,
-    onMovieClick: (MovieUI) -> Unit
+    onRemoveFromWatchListClicked: (MovieUI) -> Unit,
+    onMovieClicked:(MovieUI)->Unit
 ) {
-    if (state.wishListMovies.isEmpty())
+    if (state.watchListMovies.isEmpty())
         EmptyStateView(
             onStartAddingClicked = onStartAddingClicked
         )
     else
-        WishListView(
-            wishListedMovies = state.wishListMovies,
-            onMovieClick = onMovieClick
+        WatchListView(
+            wishListedMovies = state.watchListMovies,
+            onMovieClick = onRemoveFromWatchListClicked,
+            onMovieClicked=onMovieClicked
         )
 }

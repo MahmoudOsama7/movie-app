@@ -10,5 +10,5 @@ import javax.inject.Inject
 class AddMovieToWishListUseCase @Inject constructor(
     private var movieRepository: MovieRepository
 ) {
-    suspend operator fun invoke(movieUI: MovieUI) = movieRepository.addMovieToWishList(wishListedMovieEntity = movieUI.toWishListEntity())
+    suspend operator fun invoke(movieUI: MovieUI) = movieRepository.addMovieToWatchListCachedData(wishListedMovieEntity = movieUI.toWishListEntity())
 }

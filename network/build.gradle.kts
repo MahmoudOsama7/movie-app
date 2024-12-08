@@ -39,6 +39,22 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+    flavorDimensions += "environment"
+    productFlavors {
+        create("Production") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "${properties["BASE_URL"]}")
+            buildConfigField("String", "POSTER_URL", "${properties["POSTER_URL"]}")
+            buildConfigField("String", "API_KEY", "${properties["API_KEY"]}")
+        }
+        create("Staging") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_URL", "${properties["BASE_URL"]}")
+            buildConfigField("String", "POSTER_URL", "${properties["POSTER_URL"]}")
+            buildConfigField("String", "API_KEY", "${properties["API_KEY"]}")
+        }
     }
 }
 

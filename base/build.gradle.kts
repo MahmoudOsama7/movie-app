@@ -37,6 +37,19 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get()
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+    flavorDimensions += "environment"
+    productFlavors {
+        create("Production") {
+            dimension = "environment"
+        }
+        create("Staging") {
+            dimension = "environment"
+        }
+    }
 }
 
 dependencies {

@@ -20,7 +20,7 @@ fun BottomBar(
 ) {
     val items = listOf(
         BottomBarTabs.Home,
-        BottomBarTabs.WishList
+        BottomBarTabs.WatchList
     )
 
     val backStackEntry by navHostController.currentBackStackEntryAsState()
@@ -42,7 +42,12 @@ fun BottomBar(
                         text=screen.name,
                     )
                 },
-                icon = {},
+                icon = {
+                    androidx.compose.material3.Icon(
+                        imageVector = screen.icon,
+                        contentDescription = screen.name
+                    )
+                },
                 onClick = {
                     navHostController.navigate(screen.route) {
                         popUpTo(screen.route) { inclusive = true }

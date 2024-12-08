@@ -3,7 +3,7 @@ package com.example.movie_data.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity("wishList")
+@Entity("watchList")
 data class WishListedMovieEntity(
     @PrimaryKey
     val id:Int?=null,

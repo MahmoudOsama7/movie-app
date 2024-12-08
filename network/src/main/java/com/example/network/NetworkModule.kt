@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,11 +18,10 @@ object NetworkingModule {
     @Provides
     fun providesRetrofit(
         gson: Gson,
-        apiURL: String,
         client: OkHttpClient,
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(apiURL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -41,8 +39,4 @@ object NetworkingModule {
             .addInterceptor(HttpLoggingInterceptor().apply {level = HttpLoggingInterceptor.Level.BODY})
             .build()
     }
-
-
-    @Provides
-    fun providesAPIURL(): String =  "https://api.themoviedb.org/3/"
 }

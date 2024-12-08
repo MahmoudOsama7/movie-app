@@ -12,7 +12,7 @@ import javax.inject.Inject
 @ViewModelScoped
 class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
     private var movieRepository: MovieRepository,
-    private var fetchMoviesFromWishListUseCase: FetchMoviesFromWishListUseCase,
+    private var fetchMoviesFromWatchListUseCase: FetchMoviesFromWatchListUseCase,
     private var cachePopularMovieUseCase: CachePopularMovieUseCase,
     private var fetchCachedPopularMoviesUseCase: FetchCachedPopularMoviesUseCase
 ) {
@@ -23,7 +23,7 @@ class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
             if (response.isSuccessful) {
                 val movies = response.body()?.toMovieUI()?.take(10)?.map {
                     val movie = it.copy(
-                        isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id),
+                        isWishListed = fetchMoviesFromWatchListUseCase().map { it.id }.contains(it.id),
                         isPopular = true
                     )
                     cachePopularMovieUseCase(movieUI = movie)
@@ -33,7 +33,7 @@ class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
             } else {
                 val data =fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed().map {
                     it.copy(
-                        isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id),
+                        isWishListed = fetchMoviesFromWatchListUseCase().map { it.id }.contains(it.id),
                     )
                 }
                 emit(Resource.error(
@@ -43,7 +43,7 @@ class FetchTheFirstTenPopularMoviesUseCase @Inject constructor(
             }
         } catch (exception: Exception) {
             val data =fetchCachedPopularMoviesUseCase().sortedBy { it.popularity }.reversed().map {
-                it.copy(isWishListed = fetchMoviesFromWishListUseCase().map { it.id }.contains(it.id),)
+                it.copy(isWishListed = fetchMoviesFromWatchListUseCase().map { it.id }.contains(it.id),)
             }
             emit(Resource.error(
                 data =data ,

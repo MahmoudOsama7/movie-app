@@ -23,24 +23,24 @@ class MovieRepositoryImpl @Inject constructor(
         return movieService.getPopularMovies()
     }
 
-    override suspend fun getMoviesFromWishList(): Flow<List<WishListedMovieEntity>> {
-        return movieDAO.getMoviesFromWishList()
+    override suspend fun getMoviesFromWatchListCachedData(): Flow<List<WishListedMovieEntity>> {
+        return movieDAO.getMoviesFromWatchList()
     }
 
-    override suspend fun addMovieToWishList(wishListedMovieEntity: WishListedMovieEntity) {
+    override suspend fun addMovieToWatchListCachedData(wishListedMovieEntity: WishListedMovieEntity) {
         movieDAO.addMovieToWishList(wishListedMovieEntity)
     }
 
-    override suspend fun removeMovieFromWishList(wishListedMovieEntity: WishListedMovieEntity) {
-        movieDAO.removeMovieFromWishListById(wishListedMovieEntity.id?:0)
+    override suspend fun removeMovieFromWishListCachedData(wishListedMovieEntity: WishListedMovieEntity) {
+        movieDAO.removeMovieFromWatchList(wishListedMovieEntity.id?:0)
     }
 
     override suspend fun getMovieDetails(movieID:Int): Response<MovieDetailsResponse> {
         return movieService.getMovieDetails(movieId = movieID)
     }
 
-    override suspend fun isMovieInWishList(movieID:Int): Boolean {
-        return movieDAO.isMovieInWishList(movieID=movieID)
+    override suspend fun isMovieInWatchListed(movieID:Int): Boolean {
+        return movieDAO.isMovieInWatchList(movieID=movieID)
     }
 
     override suspend fun getMovieActingCast(movieID: Int): Response<MovieCastResponse> {
@@ -59,8 +59,12 @@ class MovieRepositoryImpl @Inject constructor(
         return movieDAO.getPopularMovies()
     }
 
-    override suspend fun getMovies(page:Int,year:Int): Response<MovieResponse> {
-        return movieService.getMovies(page=page,year=year)
+    override suspend fun getMovies(page:Int,year:Int,sortBy:String): Response<MovieResponse> {
+        return movieService.getMovies(
+            page=page,
+            year=year,
+            sortBy = sortBy
+        )
     }
 
     override suspend fun insertPaginatedMoviesToDatabase(paginatedMovieEntity: PaginatedMovieEntity) {

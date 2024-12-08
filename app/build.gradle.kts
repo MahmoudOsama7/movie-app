@@ -43,6 +43,16 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+    flavorDimensions += "environment"
+    productFlavors {
+        create("Production") {
+            dimension = "environment"
+        }
+        create("Staging") {
+            dimension = "environment"
+        }
     }
 }
 

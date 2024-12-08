@@ -17,14 +17,14 @@ interface MovieDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMovieToWishList(wishListedMovieEntity: WishListedMovieEntity)
 
-    @Query("DELETE FROM wishList WHERE id = :id")
-    suspend fun removeMovieFromWishListById(id: Int)
+    @Query("DELETE FROM watchList WHERE id = :id")
+    suspend fun removeMovieFromWatchList(id: Int)
 
-    @Query("SELECT * FROM wishList")
-    fun getMoviesFromWishList(): Flow<List<WishListedMovieEntity>>
+    @Query("SELECT * FROM watchList")
+    fun getMoviesFromWatchList(): Flow<List<WishListedMovieEntity>>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID)")
-    suspend fun isMovieInWishList(movieID: Int): Boolean
+    @Query("SELECT EXISTS(SELECT 1 FROM watchList WHERE id = :movieID)")
+    suspend fun isMovieInWatchList(movieID: Int): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMovieToPopularList(popularMovieEntity: PopularMovieEntity)

@@ -10,6 +10,6 @@ class CheckIfMovieIsInWishlistUseCase @Inject constructor(
     private var movieRepository: MovieRepository
 ) {
     suspend operator fun invoke(movieUI: MovieUI):Boolean{
-        return movieRepository.isMovieInWishList(movieID = movieUI.id)
+        return movieRepository.isMovieInWatchListed(movieID = movieUI.id)
     }
 }
