@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.example.movie_data.data.local.MOVIE_DB
 import com.example.movie_data.data.local.MovieDAO
 import com.example.movie_data.data.local.MovieDB
-import com.example.home.data.remote.MovieService
+import com.example.movie_data.data.remote.MovieService
 import com.example.home.data.repository.MovieRepositoryImpl
 import com.example.home.domain.repository.MovieRepository
 import dagger.Binds

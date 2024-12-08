@@ -6,7 +6,7 @@ import com.example.home.data.model.MovieDetailsResponse
 import com.example.home.data.model.MovieEntity
 import com.example.home.data.model.MovieResponse
 import com.example.movie_data.data.model.PaginatedMovieEntity
-import com.example.home.data.remote.MovieService
+import com.example.movie_data.data.remote.MovieService
 import com.example.home.domain.repository.MovieRepository
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow

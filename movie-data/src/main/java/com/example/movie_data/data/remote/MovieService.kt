@@ -1,4 +1,4 @@
-package com.example.home.data.remote
+package com.example.movie_data.data.remote
 
 import com.example.home.data.model.MovieCastResponse
 import com.example.home.data.model.MovieDetailsResponse
@@ -13,7 +13,7 @@ const val LANGUAGE="en-US"
 interface MovieService {
     @GET("movie/popular")
     suspend fun getPopularMovies(
-        @Query("api_key") apiKey: String=API_KEY,
+        @Query("api_key") apiKey: String= API_KEY,
         @Query("language") language: String = LANGUAGE,
     ): Response<MovieResponse>
 
