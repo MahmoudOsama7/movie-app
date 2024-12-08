@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "Khazna-Task"
 include(":app")
-include(":home")
 include(":network")
-include(":wishList")
-include(":details")
+include(":movie-data")
+include(":feature")
+include(":designSystem")
