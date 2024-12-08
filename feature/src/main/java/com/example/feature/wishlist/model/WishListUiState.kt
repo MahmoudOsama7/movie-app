@@ -1,4 +1,4 @@
-package com.example.wishlist.model
+package com.example.feature.wishlist.model
 
 import com.example.movie_data.domain.mapper.MovieUI
 

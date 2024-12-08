@@ -1,6 +1,6 @@
 package com.example.movie_data.domain.mapper
 
-import com.example.home.data.model.Cast
+import com.example.movie_data.data.model.Cast
 import com.example.movie_data.domain.model.CastUI
 
 

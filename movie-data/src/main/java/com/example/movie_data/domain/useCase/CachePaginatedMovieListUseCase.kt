@@ -1,4 +1,4 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.movie_data.domain.repository.MovieRepository

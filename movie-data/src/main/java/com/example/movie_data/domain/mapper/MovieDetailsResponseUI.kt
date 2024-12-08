@@ -1,6 +1,6 @@
 package com.example.movie_data.domain.mapper
 
-import com.example.home.data.model.MovieDetailsResponse
+import com.example.movie_data.data.model.MovieDetailsResponse
 
 fun MovieDetailsResponse.toMovieUI() =
     MovieUI(

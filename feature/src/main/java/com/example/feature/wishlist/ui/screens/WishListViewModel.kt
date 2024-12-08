@@ -1,4 +1,4 @@
-package com.example.wishlist.ui.screens
+package com.example.feature.wishlist.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,10 +6,9 @@ import com.example.base.dispatchers.IoDispatcher
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.FetchMoviesFromWishListUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
-import com.example.wishlist.model.WishListUiState
+import com.example.feature.wishlist.model.WishListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

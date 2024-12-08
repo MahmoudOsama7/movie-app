@@ -17,9 +17,9 @@ import androidx.compose.ui.unit.dp
 import com.example.feature.details.model.DetailsUiState
 import com.example.feature.details.ui.screens.views.ActingCastLazyRow
 import com.example.designsystem.components.BackButton
-import com.example.details.ui.screens.views.MovieDetailsView
+import com.example.feature.details.ui.screens.views.MovieDetailsView
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.home.ui.screens.views.MovieListView
+import com.example.feature.home.ui.screens.views.MovieListView
 
 @Composable
 fun DetailsScreen(

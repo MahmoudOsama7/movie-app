@@ -1,4 +1,4 @@
-package com.example.details.ui.screens.views
+package com.example.feature.details.ui.screens.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.feature.details.ui.screens.views.GenreChip
 import com.example.movie_data.domain.model.GenreUI
 
 @Composable

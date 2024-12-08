@@ -11,10 +11,6 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.utils.getMonthFromDate
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 @Composable
 fun VerticalMovieListView(

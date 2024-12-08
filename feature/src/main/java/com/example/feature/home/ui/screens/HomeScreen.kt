@@ -3,7 +3,7 @@ package com.example.feature.home.ui.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import com.example.home.model.HomeUIState
+import com.example.feature.home.model.HomeUIState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.home.ui.screens.views.MovieListView
+import com.example.feature.home.ui.screens.views.MovieListView
 import com.example.feature.home.ui.screens.views.VerticalMovieListView
 
 @Composable
@@ -36,7 +36,7 @@ fun HomeScreen(
 
 @Composable
 fun HomeScreenContent(
-    state:HomeUIState,
+    state: HomeUIState,
     onMovieClicked:(MovieUI)->Unit,
     onFavouriteClicked:(MovieUI)->Unit
 ){

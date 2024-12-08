@@ -9,8 +9,8 @@ import com.example.feature.details.navigation.MOVIE_ID
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.movie_data.domain.useCase.FetchMovieActingCastUseCase
-import com.example.home.domain.useCase.FetchMovieDetailsUseCase
-import com.example.home.domain.useCase.FetchSimilarMoviesUseCase
+import com.example.movie_data.domain.useCase.FetchMovieDetailsUseCase
+import com.example.movie_data.domain.useCase.FetchSimilarMoviesUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
