@@ -11,7 +11,8 @@ import com.example.feature.wishlist.ui.screens.views.WatchListView
 @Composable
 fun WatchListScreen(
     onStartAddingClicked: () -> Unit,
-    viewModel: WatchListViewModel
+    viewModel: WatchListViewModel,
+    onMovieClicked:(MovieUI)->Unit
 ) {
     val state = viewModel.state.collectAsState()
 
@@ -21,7 +22,8 @@ fun WatchListScreen(
     WatchListScreenContent(
         state = state.value,
         onStartAddingClicked = onStartAddingClicked,
-        onMovieClick = viewModel::onMovieClick
+        onMovieClicked=onMovieClicked,
+        onRemoveFromWatchListClicked = viewModel::onRemoveFromWatchListClicked
     )
 }
 
@@ -30,7 +32,8 @@ fun WatchListScreen(
 fun WatchListScreenContent(
     state: WatchList,
     onStartAddingClicked: () -> Unit,
-    onMovieClick: (MovieUI) -> Unit
+    onRemoveFromWatchListClicked: (MovieUI) -> Unit,
+    onMovieClicked:(MovieUI)->Unit
 ) {
     if (state.watchListMovies.isEmpty())
         EmptyStateView(
@@ -39,6 +42,7 @@ fun WatchListScreenContent(
     else
         WatchListView(
             wishListedMovies = state.watchListMovies,
-            onMovieClick = onMovieClick
+            onMovieClick = onRemoveFromWatchListClicked,
+            onMovieClicked=onMovieClicked
         )
 }

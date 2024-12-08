@@ -9,14 +9,22 @@ import androidx.compose.ui.unit.dp
 import com.example.movie_data.domain.mapper.MovieUI
 
 @Composable
-fun WatchListView(wishListedMovies: List<MovieUI>, onMovieClick: (MovieUI) -> Unit) {
+fun WatchListView(
+    wishListedMovies: List<MovieUI>,
+    onMovieClick: (MovieUI) -> Unit,
+    onMovieClicked:(MovieUI)->Unit
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         items(wishListedMovies) { movieUI ->
-            WatchListItemView(movieUI = movieUI, onMovieClick = onMovieClick)
+            WatchListItemView(
+                movieUI = movieUI,
+                onMovieClick = onMovieClick,
+                onMovieClicked=onMovieClicked
+            )
             Spacer(modifier = Modifier.height(8.dp))
         }
     }

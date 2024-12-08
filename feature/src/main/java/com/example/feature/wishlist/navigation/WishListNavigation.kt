@@ -16,7 +16,10 @@ fun NavGraphBuilder.watchList(
         val viewModel: WatchListViewModel = hiltViewModel()
         WatchListScreen(
             viewModel=viewModel,
-            onStartAddingClicked = navigateToHomeScreen
+            onStartAddingClicked = navigateToHomeScreen,
+            onMovieClicked={
+                navigateToDetailsScreen(it.id)
+            }
         )
     }
 }

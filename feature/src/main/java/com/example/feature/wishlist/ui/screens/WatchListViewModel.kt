@@ -37,7 +37,7 @@ class WatchListViewModel @Inject constructor(
         }
     }
 
-    fun onMovieClick(movieUI: MovieUI){
+    fun onRemoveFromWatchListClicked(movieUI: MovieUI){
         viewModelScope.launch(dispatcher) {
             removeMovieFromWatchListUseCase(movieUI.copy(isWishListed = false))
             _state.update {
