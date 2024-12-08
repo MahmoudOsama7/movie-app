@@ -42,10 +42,10 @@ android {
 dependencies {
     implementation(projects.network)
     kapt(libs.hilt.android.compiler)
+    implementation(projects.base)
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.retrofit)
     implementation(libs.coil)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.pagination)
     kapt(libs.room.compiler)
 }

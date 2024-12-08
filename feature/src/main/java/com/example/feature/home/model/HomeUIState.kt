@@ -1,4 +1,4 @@
-package com.example.home.model
+package com.example.feature.home.model
 
 import androidx.paging.PagingData
 import com.example.movie_data.domain.mapper.MovieUI

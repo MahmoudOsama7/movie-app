@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class PaginatedMovieEntity(
     @PrimaryKey(autoGenerate = true)
     val id:Int?=0,
-    val movieList:List<PopularMovieEntity>? = listOf(),
+    val movieList:List<NormalMovieEntity>? = listOf(),
     val lastPage:Int=0
 )

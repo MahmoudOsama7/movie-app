@@ -1,4 +1,4 @@
-package com.example.details.navigation
+package com.example.feature.details.navigation
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder

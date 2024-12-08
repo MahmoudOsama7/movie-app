@@ -1,10 +1,10 @@
 package com.example.movie_data.data.repository
 
 import com.example.movie_data.data.local.MovieDAO
-import com.example.home.data.model.MovieCastResponse
-import com.example.home.data.model.MovieDetailsResponse
+import com.example.movie_data.data.model.MovieCastResponse
+import com.example.movie_data.data.model.MovieDetailsResponse
 import com.example.movie_data.data.model.PopularMovieEntity
-import com.example.home.data.model.MovieResponse
+import com.example.movie_data.data.model.MovieResponse
 import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.movie_data.data.remote.MovieService
 import com.example.movie_data.domain.repository.MovieRepository
@@ -23,7 +23,7 @@ class MovieRepositoryImpl @Inject constructor(
         return movieService.getPopularMovies()
     }
 
-    override suspend fun getMoviesFromWishList(): Flow<List<PopularMovieEntity>> {
+    override suspend fun getMoviesFromWishList(): Flow<List<WishListedMovieEntity>> {
         return movieDAO.getMoviesFromWishList()
     }
 

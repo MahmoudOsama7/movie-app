@@ -1,4 +1,4 @@
-package com.example.details.ui.screens.views
+package com.example.feature.details.ui.screens.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.feature.details.ui.screens.views.GenreSection
 import com.example.movie_data.domain.mapper.MovieUI
 
 @Composable

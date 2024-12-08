@@ -1,4 +1,4 @@
-package com.example.wishlist.ui.screens.views
+package com.example.feature.wishlist.ui.screens.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

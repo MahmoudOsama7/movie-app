@@ -1,4 +1,4 @@
-package com.example.details.ui.screens.views
+package com.example.designsystem.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size

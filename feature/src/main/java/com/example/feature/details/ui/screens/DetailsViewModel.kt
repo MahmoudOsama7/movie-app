@@ -3,16 +3,17 @@ package com.example.feature.details.ui.screens
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.details.model.DetailsUiState
-import com.example.details.navigation.MOVIE_ID
+import com.example.base.dispatchers.IoDispatcher
+import com.example.feature.details.model.DetailsUiState
+import com.example.feature.details.navigation.MOVIE_ID
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.useCase.AddMovieToWishListUseCase
 import com.example.movie_data.domain.useCase.FetchMovieActingCastUseCase
-import com.example.home.domain.useCase.FetchMovieDetailsUseCase
-import com.example.home.domain.useCase.FetchSimilarMoviesUseCase
+import com.example.movie_data.domain.useCase.FetchMovieDetailsUseCase
+import com.example.movie_data.domain.useCase.FetchSimilarMoviesUseCase
 import com.example.movie_data.domain.useCase.RemoveMovieFromWishListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,7 +29,9 @@ class DetailsViewModel @Inject constructor(
     private var addMovieToWishListUseCase: AddMovieToWishListUseCase,
     private var removeMovieFromWishListUseCase: RemoveMovieFromWishListUseCase,
     private var fetchMovieActingCastUseCase: FetchMovieActingCastUseCase,
-    private var fetchSimilarMoviesUseCase: FetchSimilarMoviesUseCase
+    private var fetchSimilarMoviesUseCase: FetchSimilarMoviesUseCase,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
+
 ):ViewModel() {
 
     private val _state: MutableStateFlow<DetailsUiState> =
@@ -37,7 +40,7 @@ class DetailsViewModel @Inject constructor(
 
 
     fun initArguments(){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     selectedMovieID = savedStateHandle.get<String>(MOVIE_ID)?.toInt()?:0
@@ -54,7 +57,7 @@ class DetailsViewModel @Inject constructor(
     }
 
     private fun getMovieDetails() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             val result = fetchMovieDetailsUseCase(state.value.selectedMovieID)
             result.collect { response ->
                 when {
@@ -89,7 +92,7 @@ class DetailsViewModel @Inject constructor(
     }
 
     private fun getMovieActingTask() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             val result = fetchMovieActingCastUseCase(state.value.selectedMovieID)
             result.collect { response ->
                 when {
@@ -123,7 +126,7 @@ class DetailsViewModel @Inject constructor(
     }
 
     private fun getSimilarMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             val result = fetchSimilarMoviesUseCase(state.value.selectedMovieID)
             result.collect { response ->
                 when {
@@ -157,7 +160,7 @@ class DetailsViewModel @Inject constructor(
     }
 
     fun onMovieDetailsWishListClicked(movieUI: MovieUI){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     movieDetails = state.value.movieDetails.copy(
@@ -172,7 +175,7 @@ class DetailsViewModel @Inject constructor(
         }
     }
     fun onSimilarMovieWishListClicked(movieUI: MovieUI){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _state.update {
                 it.copy(
                     similarMovies = state.value.similarMovies.map {

@@ -11,11 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.home.navigation.homeScreen
-import com.example.home.navigation.navigateToHomeScreen
+import com.example.feature.home.navigation.homeScreen
+import com.example.feature.home.navigation.navigateToHomeScreen
 import com.example.navigation.bottomBar.BottomBar
 import com.example.navigation.bottomBar.HOME_ROUTE
-import com.example.wishlist.navigation.wishList
+import com.example.feature.wishlist.navigation.wishList
 
 
 @Composable

@@ -1,8 +1,8 @@
 package com.example.movie_data.data.remote
 
-import com.example.home.data.model.MovieCastResponse
-import com.example.home.data.model.MovieDetailsResponse
-import com.example.home.data.model.MovieResponse
+import com.example.movie_data.data.model.MovieCastResponse
+import com.example.movie_data.data.model.MovieDetailsResponse
+import com.example.movie_data.data.model.MovieResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

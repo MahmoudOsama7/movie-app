@@ -14,12 +14,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.details.model.DetailsUiState
-import com.example.details.ui.screens.views.ActingCastLazyRow
-import com.example.details.ui.screens.views.BackButton
-import com.example.details.ui.screens.views.MovieDetailsView
+import com.example.feature.details.model.DetailsUiState
+import com.example.feature.details.ui.screens.views.ActingCastLazyRow
+import com.example.designsystem.components.BackButton
+import com.example.feature.details.ui.screens.views.MovieDetailsView
 import com.example.movie_data.domain.mapper.MovieUI
-import com.example.home.ui.screens.views.MovieListView
+import com.example.feature.home.ui.screens.views.MovieListView
 
 @Composable
 fun DetailsScreen(
@@ -44,7 +44,7 @@ fun DetailsScreen(
 
 @Composable
 fun DetailsScreenContent(
-    state:DetailsUiState,
+    state: DetailsUiState,
     onBackPressed: () -> Unit,
     onMovieDetailsWishListClicked:(MovieUI)->Unit,
     onSimilarMovieWishListClicked:(MovieUI)->Unit,
@@ -65,21 +65,26 @@ fun DetailsScreenContent(
                 movie = state.movieDetails,
                 onWishlistToggle = onMovieDetailsWishListClicked,
             )
-            Text(
-                text = "Acting Cast",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-            )
-            ActingCastLazyRow(state.movieCast)
-            Text(
-                text = "Similar Movies",
-                style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
-            )
-            MovieListView(
-                movies = state.similarMovies,
-                onFavouriteClicked = onSimilarMovieWishListClicked,
-                onMovieClicked = onSimilarMovieClicked
-            )
+            if(state.movieCast.isNotEmpty()){
+                Text(
+                    text = "Acting Cast",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+                )
+                ActingCastLazyRow(state.movieCast)
+            }
+            if(state.similarMovies.isNotEmpty()){
+                Text(
+                    text = "Similar Movies",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+                )
+                MovieListView(
+                    movies = state.similarMovies,
+                    onFavouriteClicked = onSimilarMovieWishListClicked,
+                    onMovieClicked = onSimilarMovieClicked
+                )
+            }
+
         }
 }

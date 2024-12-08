@@ -1,4 +1,4 @@
-package com.example.home.domain.useCase
+package com.example.movie_data.domain.useCase
 
 import com.example.movie_data.domain.mapper.MovieUI
 import com.example.movie_data.domain.mapper.toMovieUI
@@ -20,7 +20,9 @@ class FetchMovieDetailsUseCase @Inject constructor(
             val response = movieRepository.getMovieDetails(movieID=movieID)
             if (response.isSuccessful) {
                 var movieDetailsResponse=response.body()?.toMovieUI()
-                movieDetailsResponse=movieDetailsResponse?.copy(isWishListed = checkIfMovieIsInWishlistUseCase(movieDetailsResponse))
+                movieDetailsResponse=movieDetailsResponse?.copy(
+                    isWishListed = checkIfMovieIsInWishlistUseCase(movieDetailsResponse)
+                )
                 emit(Resource.success(movieDetailsResponse))
             } else {
                 emit(Resource.error(response.message()))

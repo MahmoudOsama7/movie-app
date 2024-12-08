@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import com.example.movie_data.data.model.PopularMovieEntity
 import com.example.movie_data.data.model.PaginatedMovieEntity
 import com.example.movie_data.data.model.WishListedMovieEntity
@@ -22,9 +21,9 @@ interface MovieDAO {
     suspend fun removeMovieFromWishListById(id: Int)
 
     @Query("SELECT * FROM wishList")
-    fun getMoviesFromWishList(): Flow<List<PopularMovieEntity>>
+    fun getMoviesFromWishList(): Flow<List<WishListedMovieEntity>>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID AND isWishListed = 1)")
+    @Query("SELECT EXISTS(SELECT 1 FROM wishList WHERE id = :movieID)")
     suspend fun isMovieInWishList(movieID: Int): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
